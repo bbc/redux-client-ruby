@@ -2,6 +2,19 @@ require "spec_helper"
 
 describe BBC::Redux::Key do
 
+  describe ".from_xml" do
+    it "should build an object from an XML response" do
+      xml = %Q{<?xml version="1.0" encoding="UTF-8" ?>
+      <response>
+        <programme>
+          <key>some-value</key>
+        </programme>
+      </response>
+      }
+      BBC::Redux::Key.from_xml(xml).value.should == "some-value"
+    end
+  end
+
   def valid_key
     BBC::Redux::Key.new("some-value")
   end

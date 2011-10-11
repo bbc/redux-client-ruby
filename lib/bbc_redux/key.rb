@@ -2,6 +2,12 @@ module BBC
   module Redux
     class Key
 
+      def self.from_xml(xml_string)
+        xml = Nokogiri::XML(xml_string)
+        val = xml.xpath("/response/programme/key").first.text
+        self.new(val)
+      end
+
       attr_reader :value, :created_at
 
       def initialize(value)
