@@ -1,5 +1,6 @@
 require "nokogiri"
 
+require "bbc_redux/content"
 require "bbc_redux/key"
 require "bbc_redux/url"
 
