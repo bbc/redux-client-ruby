@@ -30,7 +30,7 @@ module BBC
       end
 
       def self.mp3(disk_reference, key)
-        WWW_HOST + "/programme/#{disk_reference}/download/#{key.value}/2m-mp4/#{disk_reference}.mp3"
+        WWW_HOST + "/programme/#{disk_reference}/download/#{key.value}/radio-mp3/#{disk_reference}.mp3"
       end
 
       def self.flv(disk_reference, key)

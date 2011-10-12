@@ -50,7 +50,7 @@ describe BBC::Redux::Url do
   end
 
   url_test :mp3 do
-    expected = BBC::Redux::Url::WWW_HOST + "/programme/some-disk-reference/download/" + key.value + "/2m-mp4/some-disk-reference.mp3"
+    expected = BBC::Redux::Url::WWW_HOST + "/programme/some-disk-reference/download/" + key.value + "/radio-mp3/some-disk-reference.mp3"
     BBC::Redux::Url.mp3("some-disk-reference", key).should == expected
   end
 
