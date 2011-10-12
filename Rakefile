@@ -32,9 +32,8 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
-RSpec::Core::RakeTask.new(:rcov) do |spec|
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
+RSpec::Core::RakeTask.new(:integration) do |spec|
+  spec.pattern = FileList['spec/**/*integration*.rb']
 end
 
 task :default => :spec
