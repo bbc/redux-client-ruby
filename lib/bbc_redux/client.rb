@@ -32,6 +32,12 @@ module BBC
         end
       end
 
+      def tv_schedule(date, session)
+        url      = Url.tv_schedule(date)
+        response = get_page(url, session.token)
+        Schedule.from_tv_html(response.body)
+      end
+
     end
   end
 end

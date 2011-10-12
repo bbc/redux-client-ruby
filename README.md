@@ -94,7 +94,12 @@ You can download files from redux, available urls are mpeg2, mpeg4, mp3, flv, h2
 
 ### Getting a schedule
 
-TODO
+Currently you can only retrieve a TV Schedule and to do that we rely on screen scraping Redux. Also it's not so much a schedule, rather an array of disk references broadcast on a particular date.
+
+    schedule = client.tv_schedule(date, user.session)
+    schedule.each do |disk_reference|
+      content = client.cont(disk_reference, user.session)
+    end
 
 ## Caveats / Known Issues
 
@@ -125,8 +130,4 @@ Please send new code in the form of a pull requests with tests. Run the current 
 
 ## TODO
 
-* Schedules
-* Is flash movie generated?
-* Remove bundle / jeweler
 * Gemspec
-* Highline

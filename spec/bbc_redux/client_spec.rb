@@ -120,4 +120,53 @@ describe BBC::Redux::Client do
     end
   end
 
+  describe "tv_schedule" do
+
+    it "should parse schedule OK" do
+       client.stub!(:get).and_return(fake_response(200, "foo"))
+       BBC::Redux::Schedule.should_receive(:from_tv_html).with("foo")
+       client.tv_schedule(Time.now, fake_session)
+    end
+
+    it "should raise a session invalid exception when given an an invalid session object" do
+       html = %Q{<html>
+        <head>
+          <title>BBC</title>
+          <link rel="stylesheet" type="text/css" media="all" title="Default" href="http://g.bbcredux.com/static/main.css">
+        </head>
+        <body>
+          <div>
+            <a href="/"><img src="http://g.bbcredux.com/static/bbc.gif"></a>
+          </div>
+
+        <div>
+          <br>Please log in.<br><br>
+          <form action="" method="post" style="display: inline">
+            user name <input type="text" name="username">
+            password <input type="password" name="password">
+            <input type="hidden" name="dologin" value=1>
+            <input type="submit" value="log in">
+
+          </form>
+          or <a href="http://g.bbcredux.com/signup">Sign up</a>
+          or <a href="http://g.bbcredux.com/recover">Password reset</a>
+        </div>
+        <p>You must be accepting cookies for this to work.</p>
+        <p><a href="http://www.bbc.co.uk/blogs/bbcinternet/2008/10/history_of_the_bbc_redux_proje.html">BBC Blogs article about Redux</a></p>
+
+
+        </body>
+       </html>
+       }
+       client.stub!(:get).and_return(fake_response(200, html))
+       lambda { client.tv_schedule(Time.now, fake_session) }.should raise_error BBC::Redux::Exceptions::SessionInvalidException
+    end
+
+
+    it "should raise a client http exception with a bad response" do
+      client.stub!(:get).and_return(fake_response(500))
+      lambda { client.tv_schedule(Time.now, fake_session) }.should raise_error BBC::Redux::Exceptions::ClientHttpException
+    end
+  end
+
 end

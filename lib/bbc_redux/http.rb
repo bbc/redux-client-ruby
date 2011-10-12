@@ -7,11 +7,22 @@ module BBC
 
       include BBC::Redux::Exceptions
 
-      def get(url)
-        Typhoeus::Request.get(url)
+      def get(url, opts = {})
+        Typhoeus::Request.get(url, opts)
       end
 
       protected
+
+      def get_page(url, token)
+        response = get url, :headers => {:Cookie => "BBC_video=#{token}"}
+        case response.code
+          when 200
+            raise SessionInvalidException.new("Session invalid, can't connect to #{url}") if response.body =~ /Please log in/
+            response
+          else
+            http_error(response)
+        end
+      end
 
       def user_request(url, &block)
         response = get url
