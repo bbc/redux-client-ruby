@@ -101,6 +101,11 @@ Currently you can only retrieve a TV Schedule and to do that we rely on screen s
       content = client.cont(disk_reference, user.session)
     end
 
+May throw any one of the following errors ...
+
+    BBC::Redux::Exceptions::SessionInvalidException  # Your session has expired / become invalid
+    BBC::Redux::Exceptions::ClientHttpException      # Some other HTTP error
+
 ## Caveats / Known Issues
 
 ### Using a proxy server
