@@ -90,7 +90,7 @@ You can download files from redux, available urls are mpeg2, mpeg4, mp3, flv, h2
     # Do something with response
     response.code     # 200 (you can but hope!)
     response.headers  # Hash
-    response.body     # Your file
+    response.body     # Your file or string
 
 ### Getting a schedule
 
@@ -98,7 +98,7 @@ Currently you can only retrieve a TV Schedule and to do that we rely on screen s
 
     schedule = client.tv_schedule(date, user.session)
     schedule.each do |disk_reference|
-      content = client.cont(disk_reference, user.session)
+      content = client.content(disk_reference, user.session)
     end
 
 May throw any one of the following errors ...
