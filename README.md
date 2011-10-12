@@ -107,7 +107,7 @@ Redux has no HTTPS, also for some reason the API call for logging in is a GET re
 
 ### "Your account has been comprimised"
 
-You might get you account locked if repeatedly login, especially from multiple IP's. To be on the safe side you should reuse the `user` and `user.session` object throughout you application (though beware it may time out with several hours inactivity).
+You might get your account locked if you repeatedly login, especially from multiple IP's. To be on the safe side you should reuse the `user` and `user.session` object throughout you application (though beware it may time out with several hours inactivity).
 
 Also, always remember to use `client.logout(user.session)` when you are finished.
 
