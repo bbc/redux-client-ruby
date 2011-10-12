@@ -95,4 +95,14 @@ describe BBC::Redux::Client do
     end
   end
 
+  describe "#tv_schedule" do
+    it "should return correct key info" do
+      login_and do |user|
+        schedule = client.tv_schedule(Time.gm(2010, 10, 10), user.session)
+        schedule.size.should  == 191
+        schedule.first.should == "5526262264585557507"
+      end
+    end
+  end
+
 end
