@@ -17,21 +17,23 @@ describe BBC::Redux::Content do
           <series_crid>fp.bbc.co.uk/KRYRHR</series_crid>
           <programme_crid>fp.bbc.co.uk/1RE93D</programme_crid>
           <name>Top Gear</name>
+          <media type="flash" uri="blah" size="232572028" generated="1"/>
           <key>some-key's-value</key>
         </programme>
       </response>
       }
       xml_content = BBC::Redux::Content.from_xml(xml)
-      xml_content.disk_reference.should == "5554695377586026009"
-      xml_content.duration.should       == 3600
-      xml_content.start_date.should     == Time.at(1293303300)
-      xml_content.channel.should        == "bbctwo"
-      xml_content.frames.should         == true
-      xml_content.title.should          == "Top Gear"
-      xml_content.description.should    == "Some description"
-      xml_content.series_crid.should    == "fp.bbc.co.uk/KRYRHR"
-      xml_content.programme_crid.should == "fp.bbc.co.uk/1RE93D"
-      xml_content.key.value.should      == "some-key's-value"
+      xml_content.disk_reference.should       == "5554695377586026009"
+      xml_content.duration.should             == 3600
+      xml_content.start_date.should           == Time.at(1293303300)
+      xml_content.channel.should              == "bbctwo"
+      xml_content.title.should                == "Top Gear"
+      xml_content.description.should          == "Some description"
+      xml_content.series_crid.should          == "fp.bbc.co.uk/KRYRHR"
+      xml_content.programme_crid.should       == "fp.bbc.co.uk/1RE93D"
+      xml_content.key.value.should            == "some-key's-value"
+      xml_content.generated_frames?.should    == true
+      xml_content.generated_flv?.should       == true
     end
   end
 
@@ -42,6 +44,7 @@ describe BBC::Redux::Content do
       :start_date     => Time.now,
       :channel        => "some-channel",
       :frames         => true,
+      :flv            => true,
       :title          => "some-title",
       :description    => "some-description",
       :series_crid    => "some-series_crid",
@@ -54,10 +57,18 @@ describe BBC::Redux::Content do
     BBC::Redux::Content.new data
   end
 
-  [:disk_reference, :duration, :start_date, :channel, :frames, :title, :description, :series_crid, :programme_crid, :key].each do |attribute|
+  [:disk_reference, :duration, :start_date, :channel, :title, :description, :series_crid, :programme_crid, :key].each do |attribute|
     it "should expose #{attribute}" do
       content.send(attribute).should == data[attribute]
     end
+  end
+
+  it 'should expose whether frames have been generated via generated_frames?' do
+    content.generated_frames?.should == true
+  end
+
+  it 'should expose whether frames have been generated via generated_flv?' do
+    content.generated_flv?.should == true
   end
 
 end

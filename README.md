@@ -42,16 +42,17 @@ May throw any one of the following errors ...
 You can retrieve data from Redux ...
 
     data  = client.content("5286433008768041518", user.session)
-    data.title            # String
-    data.description      # String
-    data.disk_reference   # String
-    data.duration         # Int (seconds)
-    data.start_date       # Date
-    data.channel          # String (e.g. "bbctwo")
-    data.frames           # Boolean
-    data.series_crid      # String
-    data.programme_crid   # String
-    data.key              # Key
+    data.title             # String
+    data.description       # String
+    data.disk_reference    # String
+    data.duration          # Int (seconds)
+    data.start_date        # Date
+    data.channel           # String (e.g. "bbctwo")
+    data.series_crid       # String
+    data.programme_crid    # String
+    data.generated_frames? # Boolean
+    data.generated_flv?    # Boolean
+    data.key               # Key
 
 May throw any one of the following errors ...
 
@@ -122,3 +123,10 @@ Please send new code in the form of a pull requests with tests. Run the current 
     rake spec         # Runs spec/*_spec.rb
     rake integration  # Runs spec/integration_test.rb - actually connects to redux
 
+## TODO
+
+* Schedules
+* Is flash movie generated?
+* Remove bundle / jeweler
+* Gemspec
+* Highline

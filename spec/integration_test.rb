@@ -77,9 +77,11 @@ describe BBC::Redux::Client do
   describe "#content" do
     it "should return correct content info" do
       login_and do |user|
-        content = client.content("5404438094219104161", user.session)
-        content.title.should   == "Top Gear"
-        content.channel.should == "bbctwo"
+        content = client.content("5606393469443492993", user.session)
+        content.title.should   == "British Olympic Dreams"
+        content.channel.should == "bbcnews24"
+        content.generated_frames?.should == true
+        content.generated_flv?.should    == true
       end
     end
   end
