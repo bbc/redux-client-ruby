@@ -19,14 +19,14 @@ module BBC
       end
 
       def content(disk_reference, session)
-        url = Url.key(disk_reference, session.token)
+        url = Url.content(disk_reference, session.token)
         content_request(url) do |response|
           Content.from_xml(response.body)
         end
       end
 
       def key(disk_reference, session)
-        url = Url.content(disk_reference, session.token)
+        url = Url.key(disk_reference, session.token)
         content_request(url) do |response|
           Key.from_xml(response.body)
         end
