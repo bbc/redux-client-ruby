@@ -32,6 +32,7 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
+desc "Run integration tests (requires redux login)"
 RSpec::Core::RakeTask.new(:integration) do |spec|
   spec.pattern = FileList['spec/**/*integration*.rb']
 end
