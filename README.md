@@ -80,7 +80,7 @@ A key should be valid for ~24 hours, there are some helper methods around this
 
 ### Getting some files
 
-You can donwload files from redux, available urls are mpeg2, mpeg4, mp3, flv, h264\_lo, h264\_hi, dvbsubs. You can use the `Url.` functions to build a URL and within your own code, or you can user `client.get` which will return a `Typhoeus` response object.
+You can download files from redux, available urls are mpeg2, mpeg4, mp3, flv, h264\_lo, h264\_hi, dvbsubs. You can use the `Url.` functions to build a URL and within your own code, or you can user `client.get` which will return a `Typhoeus` response object.
 
     key       = client.key("5286433008768041518", user.session)
     url       = BBC::Redux::Url.flv("5286433008768041518", key)
