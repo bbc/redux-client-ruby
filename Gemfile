@@ -5,5 +5,6 @@ gem "nokogiri"
 
 group :development do
   gem "rspec", "~> 2.3.0"
+  gem "jeweler"
   gem "fuubar"
 end
