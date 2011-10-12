@@ -49,6 +49,10 @@ module BBC
         WWW_HOST + "/programme/#{disk_reference}/download/#{key.value}/#{disk_reference}-dvbsubs.xml"
       end
 
+      def self.tv_schedule(date)
+        WWW_HOST + "/day/#{date.strftime("%Y-%m-%d")}"
+      end
+
     end
   end
 end

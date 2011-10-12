@@ -74,4 +74,9 @@ describe BBC::Redux::Url do
     BBC::Redux::Url.dvbsubs("some-disk-reference", key).should == expected
   end
 
+  url_test :tv_schedule do
+    expected = BBC::Redux::Url::WWW_HOST + "/day/2010-10-10"
+    BBC::Redux::Url.tv_schedule(Time.gm(2010, 10, 10)).should == expected
+  end
+
 end
