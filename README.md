@@ -132,7 +132,3 @@ Please send new code in the form of a pull requests with tests. Run the current 
 
     rake spec         # Runs spec/*_spec.rb
     rake integration  # Runs spec/integration_test.rb - actually connects to redux
-
-## TODO
-
-* Gemspec
