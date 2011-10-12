@@ -11,11 +11,11 @@ module IntegrationTestHelpers
   end
 
   def username
-    @@username ||= ask("Redux user:")
+    @@username ||= ask("Please enter redux user: ")
   end
 
   def password
-    @@password ||= ask("Redux pass:", true)
+    @@password ||= ask("Please enter redux pass: ", true)
   end
 
   def client
