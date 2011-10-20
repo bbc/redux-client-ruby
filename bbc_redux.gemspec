@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bbc_redux}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["matth"]
-  s.date = %q{2011-10-12}
+  s.date = %q{2011-10-20}
   s.description = %q{A gem to help navigate the Redux API's and to screen scrape where an API does not exist}
   s.email = %q{matt.haynes@bbc.co.uk}
   s.extra_rdoc_files = [
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "bbc_redux.gemspec",
     "lib/bbc_redux.rb",
     "lib/bbc_redux/client.rb",
     "lib/bbc_redux/content.rb",

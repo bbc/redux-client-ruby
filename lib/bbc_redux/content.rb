@@ -11,7 +11,7 @@ module BBC
           :duration       => xml.xpath("/response/programme/duration").first.text.to_i,
           :start_date     => Time.at(xml.xpath("/response/programme/unixtime").first.text.to_i),
           :channel        => xml.xpath("/response/programme/channel").first.text,
-          :frames         => xml.xpath("/response/programme/@frames").first.value == "1",
+          :frames         => xml.xpath("/response/programme/@frames").size > 0 && xml.xpath("/response/programme/@frames").first.value == "1",
           :flv            => xml.xpath("/response/programme/media[@type='flash']/@generated").size > 0,
           :title          => xml.xpath("/response/programme/name").first.text,
           :description    => xml.xpath("/response/programme/description").first.text,
