@@ -16,6 +16,7 @@ module BBC
       def logout(session)
         url = Url.logout(session.token)
         user_request(url)
+      rescue ClientHttpException
       end
 
       def content(disk_reference, session)

@@ -52,9 +52,9 @@ describe BBC::Redux::Client do
       client.stub!(:get).and_return(fake_response(200))
       client.logout(fake_session)
     end
-    it "should raise a client http exception with a bad response" do
+    it "should not raise a client http exception with a bad response" do
       client.stub!(:get).and_return(fake_response(500))
-      lambda { client.logout(fake_session) }.should raise_error BBC::Redux::Exceptions::ClientHttpException
+      lambda { client.logout(fake_session) }.should_not raise_error BBC::Redux::Exceptions::ClientHttpException
     end
   end
 
