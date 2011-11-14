@@ -6,7 +6,7 @@ A gem to help navigate the Redux API's and to screen scrape where an API does no
 
 Use [Bundler](http://gembundler.com/) + git, add this to your `Gemfile`
 
-    gem "bbc_redux", :git => "http://github.com/bbcsnippets/redux-client-ruby"
+    gem "bbc_redux", :git => "git://github.com/bbcsnippets/redux-client-ruby.git"
 
 In your code
 
