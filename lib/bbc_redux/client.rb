@@ -1,9 +1,8 @@
 require "bbc_redux/http"
 
 module BBC
-  module Redux
+  class Redux
     class Client
-
       include Http
 
       def login(username, password)

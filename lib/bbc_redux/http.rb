@@ -2,7 +2,7 @@ require "typhoeus"
 require "bbc_redux/exceptions"
 
 module BBC
-  module Redux
+  class Redux
     module Http
 
       include BBC::Redux::Exceptions

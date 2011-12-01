@@ -1,5 +1,5 @@
 module BBC
-  module Redux
+  class Redux
     class Session
 
       attr_reader :token, :created_at

@@ -1,5 +1,5 @@
 module BBC
-  module Redux
+  class Redux
     module Schedule
 
       def self.from_tv_html(html_string)

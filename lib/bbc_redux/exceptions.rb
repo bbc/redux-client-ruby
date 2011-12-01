@@ -1,5 +1,5 @@
 module BBC
-  module Redux
+  class Redux
     module Exceptions
 
       # Wrong username

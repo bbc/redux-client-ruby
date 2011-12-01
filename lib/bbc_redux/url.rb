@@ -1,5 +1,5 @@
 module BBC
-  module Redux
+  class Redux
     module Url
 
       API_HOST = "http://api.bbcredux.com"

@@ -1,5 +1,5 @@
 module BBC
-  module Redux
+  class Redux
     class User
 
       def self.from_xml(xml_string)
