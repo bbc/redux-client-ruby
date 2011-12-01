@@ -27,7 +27,7 @@ module BBC
     end
     
     def key(disk_reference)
-      client.key(disk_reference, user)
+      client.key(disk_reference, user.session)
     end
     
     def mpeg2_url(disk_reference)
