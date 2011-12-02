@@ -55,8 +55,8 @@ Whether you use the quick abstraction layer or the underlying API make sure you 
     redux.dvbsubs("5286433008768041518")      # String
 
     # Download a file
-    # Generated media file urls contain a cryptographic hash so
-    # do not require a valid session cookie. Therfore you could
+    # NB: Generated media file urls contain a cryptographic hash so
+    # do not require a valid session cookie. Therefore you could
     # use your own HTTP connection for this
     url       = redux.mpeg2_url("5286433008768041518")
     response  = redux.client.get(url)
@@ -193,5 +193,6 @@ The schedule list relies on screen scraping Redux, unfortunately we can't get th
 
 Please send new code in the form of a pull requests with tests. Run the current test suite with ...
 
-    rake spec         # Runs spec/*_spec.rb
-    rake integration  # Runs spec/integration_test.rb - actually connects to redux
+    rake spec         # Runs spec/**/*_spec.rb
+    rake integration  # Runs spec/integration/*_spec.rb - actually connects to redux
+    rake coverage     # Generate code coverage report
