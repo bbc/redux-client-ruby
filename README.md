@@ -12,7 +12,70 @@ In your code
 
     require "bbc_redux"
 
-## Usage
+## Quick Start
+
+We have written a "sugar" layer on top of the core API, use this if you ...
+
+* don't really care about how redux works
+* want to write less code
+* want to be able to mock out calls easily
+
+Whether you use the quick abstraction layer or the underlying API make sure you read the section "Caveats / Known Issues" below.
+
+    # Login
+    redux = BBC::Redux.login("username", "password")
+
+    # User details
+    redux.user.id           # Int
+    redux.user.username     # String
+    redux.user.first_name   # String
+    redux.user.last_name    # String
+    redux.user.email        # String
+
+    # Content data
+    data  = redux.content("5286433008768041518")
+    data.title             # String
+    data.description       # String
+    data.disk_reference    # String
+    data.duration          # Int (seconds)
+    data.start_date        # Date
+    data.channel           # String (e.g. "bbctwo")
+    data.series_crid       # String
+    data.programme_crid    # String
+    data.generated_frames? # Boolean
+    data.generated_flv?    # Boolean
+
+    # Media file urls ...
+    redux.mpeg2_url("5286433008768041518")    # String
+    redux.mpeg4_url("5286433008768041518")    # String
+    redux.mp3_url("5286433008768041518")      # String
+    redux.flv_url("5286433008768041518")      # String
+    redux.h264_lo_url("5286433008768041518")  # String
+    redux.h264_hi_url("5286433008768041518")  # String
+    redux.dvbsubs("5286433008768041518")      # String
+
+    # Download a file
+    # Generated media file urls contain a cryptographic hash so
+    # do not require a valid session cookie. Therfore you could
+    # use your own HTTP connection for this
+    url       = redux.mpeg2_url("5286433008768041518")
+    response  = redux.client.get(url)
+
+    # Do something with response
+    response.code     # 200 (you can but hope!)
+    response.headers  # Hash
+    response.body     # Your file or string
+
+    # Get a TV schedule
+    redux.tv_schedule(date).each do |disk_reference|
+      content = redux.content(disk_reference)
+    end
+
+    # Remembering to logout whe your done
+    redux.logout
+
+
+## Core API Usage
 
 ### Users and sessions
 
