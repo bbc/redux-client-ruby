@@ -32,4 +32,10 @@ RSpec::Core::RakeTask.new(:integration) do |spec|
   spec.pattern = FileList['spec/integration/*_spec.rb']
 end
 
+desc "Generate coverage"
+task :coverage do
+  require "cover_me"
+  CoverMe.complete!
+end
+
 task :default => :spec

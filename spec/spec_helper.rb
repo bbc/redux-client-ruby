@@ -1,3 +1,8 @@
+require "cover_me"
+
+CoverMe.config.project.root = File.join(File.dirname(__FILE__), '..')
+CoverMe.config.file_pattern = /redux/
+
 require 'rspec'
 require 'bbc_redux'
 
