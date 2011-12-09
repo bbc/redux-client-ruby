@@ -1,3 +1,5 @@
+require 'uri'
+
 module BBC
   class Redux
     module Url
@@ -6,7 +8,7 @@ module BBC
       WWW_HOST = "http://g.bbcredux.com"
 
       def self.login(username, password)
-        API_HOST + "/user/login?username=#{username}&password=#{password}"
+        encode API_HOST + "/user/login?username=#{username}&password=#{password}"
       end
 
       def self.logout(token)
@@ -51,6 +53,15 @@ module BBC
 
       def self.tv_schedule(date)
         WWW_HOST + "/day/#{date.strftime("%Y-%m-%d")}"
+      end
+
+      private
+
+      def self.encode(url)
+        if RUBY_VERSION.match("1.8") || url.encoding.name == "UTF-8"
+          url = url.unpack("U*").map { |c| c.chr }.join # ASCII VERSION
+        end
+        URI.encode(url)
       end
 
     end

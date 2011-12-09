@@ -7,5 +7,5 @@ group :development do
   gem "rspec", "~> 2.3.0"
   gem "jeweler"
   gem "fuubar"
-  gem "cover_me"
+  gem "cover_me" if RUBY_VERSION.match("1.9")
 end

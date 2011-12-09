@@ -1,7 +1,9 @@
-require "cover_me"
+if RUBY_VERSION.match("1.9")
+  require "cover_me"
 
-CoverMe.config.project.root = File.join(File.dirname(__FILE__), '..')
-CoverMe.config.file_pattern = /redux/
+  CoverMe.config.project.root = File.join(File.dirname(__FILE__), '..')
+  CoverMe.config.file_pattern = /redux/
+end
 
 require 'rspec'
 require 'bbc_redux'

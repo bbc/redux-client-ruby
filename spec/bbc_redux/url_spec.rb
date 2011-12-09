@@ -1,3 +1,5 @@
+# encoding : utf-8
+
 require "spec_helper"
 require "ostruct"
 
@@ -23,6 +25,12 @@ describe BBC::Redux::Url do
 
   url_test :login do
     BBC::Redux::Url.login("myname", "mypass").should == BBC::Redux::Url::API_HOST+"/user/login?username=myname&password=mypass"
+  end
+
+  describe ".login" do
+    it "should encode wierd characters in the URL" do
+      BBC::Redux::Url.login("myname", "$£").should == BBC::Redux::Url::API_HOST+"/user/login?username=myname&password=$%A3"
+    end
   end
 
   url_test :logout do
