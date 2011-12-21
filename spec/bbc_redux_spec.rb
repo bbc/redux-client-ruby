@@ -53,6 +53,15 @@ describe BBC::Redux do
     end
   end
 
+  describe "#ping" do
+    it "should ping the url" do
+      session_expectation
+      @instance.client.should_receive(:ping)
+
+      @instance.ping
+    end
+  end
+
   context "Url methods" do
     [:mpeg2,:mpeg4,:mp3,:flv,:h264_lo,:h264_hi,:dvbsubs].each do |url_method|
       it "should generate a #{url_method} url" do

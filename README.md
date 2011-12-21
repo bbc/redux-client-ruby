@@ -169,6 +169,16 @@ May throw any one of the following errors ...
     BBC::Redux::Exceptions::SessionInvalidException  # Your session has expired / become invalid
     BBC::Redux::Exceptions::ClientHttpException      # Some other HTTP error
 
+
+### Keeping Session alive
+
+Reason for implementing this feature was to ensure that users who left their browsers open but didn't interact with Snippets will not be logged out, unless they
+explicityly shut their browsers down. One can use the following code for polling Redux to keep the session alive.
+
+<pre>
+client.ping(user.session)
+</pre>
+
 ## Caveats / Known Issues
 
 ### Using a proxy server
