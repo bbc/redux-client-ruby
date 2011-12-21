@@ -55,6 +55,10 @@ module BBC
         WWW_HOST + "/day/#{date.strftime("%Y-%m-%d")}"
       end
 
+      def self.ping
+        WWW_HOST
+      end
+
       private
 
       def self.encode(url)
