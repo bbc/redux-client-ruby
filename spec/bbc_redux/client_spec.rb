@@ -169,4 +169,9 @@ describe BBC::Redux::Client do
     end
   end
 
+  it '.ping' do
+    client.should_receive(:head_page)
+
+    client.ping(fake_session)
+  end
 end

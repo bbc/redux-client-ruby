@@ -11,10 +11,21 @@ module BBC
         Typhoeus::Request.get(url, opts)
       end
 
+      def head(url, opts = {})
+        Typhoeus::Request.head(url, opts)
+      end
+
+      def head_page(url, token)
+        response = head url, :headers => cookie_request_header(token)
+        unless response.code == 200
+          http_error(response)
+        end
+      end
+
       protected
 
       def get_page(url, token)
-        response = get url, :headers => {:Cookie => "BBC_video=#{token}"}
+        response = get url, :headers => cookie_request_header(token)
         case response.code
           when 200
             raise SessionInvalidException.new("Session invalid, can't connect to #{url}") if response.body =~ /Please log in/
@@ -56,6 +67,9 @@ module BBC
         raise ClientHttpException.new("#{response.code} response for #{response.effective_url}")
       end
 
+      def cookie_request_header(token)
+        {:Cookie => "BBC_video=#{token}"}
+      end
     end
   end
 end

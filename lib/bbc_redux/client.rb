@@ -38,6 +38,9 @@ module BBC
         Schedule.from_tv_html(response.body)
       end
 
+      def ping(session)
+        head_page(Url.ping, session.token)
+      end
     end
   end
 end
