@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bbc_redux}
-  s.version = "0.3.3"
+  s.version = "0.3.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["matth"]
-  s.date = %q{2011-12-09}
+  s.authors = [%q{matth}]
+  s.date = %q{2011-12-22}
   s.description = %q{A gem to help navigate the Redux API's and to screen scrape where an API does not exist}
   s.email = %q{matt.haynes@bbc.co.uk}
   s.extra_rdoc_files = [
@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
     "lib/bbc_redux/user.rb",
     "spec/bbc_redux/client_spec.rb",
     "spec/bbc_redux/content_spec.rb",
+    "spec/bbc_redux/http_spec.rb",
     "spec/bbc_redux/key_spec.rb",
     "spec/bbc_redux/schedule_spec.rb",
     "spec/bbc_redux/session_spec.rb",
@@ -49,9 +50,9 @@ Gem::Specification.new do |s|
     "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/bbcsnippets/redux-client-ruby}
-  s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
+  s.licenses = [%q{MIT}]
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.9}
   s.summary = %q{A Ruby client for BBC Redux}
 
   if s.respond_to? :specification_version then
@@ -63,14 +64,12 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rspec>, ["~> 2.3.0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<fuubar>, [">= 0"])
-      s.add_development_dependency(%q<cover_me>, [">= 0"])
     else
       s.add_dependency(%q<typhoeus>, [">= 0"])
       s.add_dependency(%q<nokogiri>, [">= 0"])
       s.add_dependency(%q<rspec>, ["~> 2.3.0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<fuubar>, [">= 0"])
-      s.add_dependency(%q<cover_me>, [">= 0"])
     end
   else
     s.add_dependency(%q<typhoeus>, [">= 0"])
@@ -78,7 +77,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rspec>, ["~> 2.3.0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<fuubar>, [">= 0"])
-    s.add_dependency(%q<cover_me>, [">= 0"])
   end
 end
 
