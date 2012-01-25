@@ -2,6 +2,12 @@
 
 A gem to help navigate the Redux API's and to screen scrape where an API does not exist.
 
+If you're reading this and you're not a BBC developer or authorised contractor then it probably won't make much sense.
+
+BBC Snippets and BBC Redux are tools designed to allow BBC staff to develop new ways to view and navigate content. As such, they're not open to the public.
+
+If you've been contracted by the BBC to do work in this area please feel free to message us.
+
 ## Installation
 
 Use [Bundler](http://gembundler.com/) + git, add this to your `Gemfile`
