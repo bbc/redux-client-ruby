@@ -89,6 +89,11 @@ class BBC::Redux
       Url.tv_schedule(Time.gm(2010, 10, 10)).should == expected
     end
 
+    url_test :frames do
+      expected = Url::WWW_HOST + "/programme/some-disk-reference/download/" + key.value + "/frame-270-00010-60.jpg"
+      Url.frames("some-disk-reference", 10, key).should == expected
+    end
+
     url_test :ping do
       expected = Url::WWW_HOST
       Url.ping.should == expected
