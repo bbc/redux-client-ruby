@@ -90,7 +90,7 @@ class BBC::Redux
     end
 
     url_test :frames do
-      expected = Url::WWW_HOST + "/programme/some-disk-reference/download/" + key.value + "/frame-270-00010-60.jpg"
+      expected = Url::WWW_HOST + "/programme/some-disk-reference/download/" + key.value + "/frame-270-00600-60.jpg"
       Url.frames("some-disk-reference", 10, key).should == expected
     end
 

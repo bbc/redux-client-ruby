@@ -56,7 +56,7 @@ module BBC
       end
 
       def self.frames(disk_reference, minute, key)
-        Url::WWW_HOST + "/programme/#{disk_reference}/download/#{key.value}/frame-270-#{'%05d' % minute}-60.jpg"
+        Url::WWW_HOST + "/programme/#{disk_reference}/download/#{key.value}/frame-270-#{'%05d' % (minute * 60)}-60.jpg"
       end
 
       def self.ping
