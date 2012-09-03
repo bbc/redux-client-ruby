@@ -96,7 +96,7 @@ class BBC::Redux
 
     url_test :montage do
       expected = Url::WWW_HOST + "/programme/some-disk-reference/download/" + key.value + "/frame-180-all.jpg"
-      Url.montage("some-disk-reference", 10, key).should == expected
+      Url.montage("some-disk-reference", key).should == expected
     end
 
     url_test :ping do
