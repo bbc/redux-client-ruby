@@ -94,6 +94,11 @@ class BBC::Redux
       Url.frames("some-disk-reference", 10, key).should == expected
     end
 
+    url_test :montage do
+      expected = Url::WWW_HOST + "/programme/some-disk-reference/download/" + key.value + "/frame-180-all.jpg"
+      Url.montage("some-disk-reference", 10, key).should == expected
+    end
+
     url_test :ping do
       expected = Url::WWW_HOST
       Url.ping.should == expected
