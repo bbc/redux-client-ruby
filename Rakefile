@@ -12,12 +12,12 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   gem.name = "bbc_redux"
-  gem.homepage = "http://github.com/bbcsnippets/redux-client-ruby"
-  gem.license = "MIT"
+  gem.homepage = "http://github.com/bbcrd/redux-client-ruby"
+  gem.license = "Apache"
   gem.summary = %Q{A Ruby client for BBC Redux}
   gem.description = %Q{A gem to help navigate the Redux API's and to screen scrape where an API does not exist}
   gem.email = "matt.haynes@bbc.co.uk"
-  gem.authors = ["matth"]
+  gem.authors = ["matth", "andhapp", "JamesHarrison"]
 end
 Jeweler::RubygemsDotOrgTasks.new
 
