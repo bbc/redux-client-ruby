@@ -55,6 +55,14 @@ module BBC
         WWW_HOST + "/day/#{date.strftime("%Y-%m-%d")}"
       end
 
+      def self.radio_schedule(date)
+        WWW_HOST + "/day/radio-#{date.strftime("%Y-%m-%d")}"
+      end
+
+      def self.radio_programme(path)
+        WWW_HOST + path
+      end
+
       def self.frames(disk_reference, minute, key)
         Url::WWW_HOST + "/programme/#{disk_reference}/download/#{key.value}/frame-270-#{'%05d' % (minute * 60)}-60.jpg"
       end

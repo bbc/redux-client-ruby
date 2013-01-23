@@ -38,6 +38,10 @@ module BBC
       client.tv_schedule(date, user.session)
     end
 
+    def radio_schedule(date)
+      client.radio_schedule(date, user.session)
+    end
+
     def ping
       client.ping(user.session)
     end

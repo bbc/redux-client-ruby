@@ -38,6 +38,16 @@ module BBC
         Schedule.from_tv_html(response.body)
       end
 
+      def radio_schedule(date, session)
+        url = Url.radio_schedule(date)
+        response = get_page(url, session.token)
+        Schedule.from_radio_html(response.body) do |href|
+          url = Url.radio_programme(href)
+          response = get_page(url, session.token)
+          Schedule.from_radio_programme_html(response.body)
+        end
+      end
+
       def ping(session)
         head_page(Url.ping, session.token)
       end

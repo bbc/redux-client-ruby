@@ -22,7 +22,7 @@ describe BBC::Redux do
 
     # Schedule OK
     schedule = redux.tv_schedule(Time.gm(2010, 10, 10))
-    schedule.size.should  == 191
+    schedule.size.should  == 190
 
     # Logout OK
     redux.logout
