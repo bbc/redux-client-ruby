@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "bbc_redux"
-  s.version = "0.3.5"
+  s.version = "0.3.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["matth", "andhapp", "JamesHarrison"]
-  s.date = "2013-01-15"
+  s.date = "2013-04-08"
   s.description = "A gem to help navigate the Redux API's and to screen scrape where an API does not exist"
   s.email = "matt.haynes@bbc.co.uk"
   s.extra_rdoc_files = [
@@ -17,6 +17,8 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".rspec",
+    "AUTHORS",
+    "COPYING",
     "Gemfile",
     "Gemfile.lock",
     "README.md",
@@ -42,6 +44,9 @@ Gem::Specification.new do |s|
     "spec/bbc_redux/url_spec.rb",
     "spec/bbc_redux/user_spec.rb",
     "spec/bbc_redux_spec.rb",
+    "spec/fixtures/radio_programme.html",
+    "spec/fixtures/radio_schedule.html",
+    "spec/fixtures/tv_schedule.html",
     "spec/integration/core_api_spec.rb",
     "spec/integration/integration_test_helpers.rb",
     "spec/integration/sugar_api_spec.rb",
@@ -50,7 +55,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/bbcrd/redux-client-ruby"
   s.licenses = ["Apache"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.17"
+  s.rubygems_version = "1.8.25"
   s.summary = "A Ruby client for BBC Redux"
 
   if s.respond_to? :specification_version then
