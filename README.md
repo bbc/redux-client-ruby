@@ -60,6 +60,10 @@ Whether you use the quick abstraction layer or the underlying API make sure you 
     redux.h264_hi_url("5286433008768041518")  # String
     redux.dvbsubs("5286433008768041518")      # String
 
+    # You can optionally specify a filename for the media, this will affect the Content-Disposition
+    # header of the http response
+    redux.mpeg2_url("5286433008768041518", "my-mpeg2-file")    # String
+
     # Download a file
     # NB: Generated media file urls contain a cryptographic hash so
     # do not require a valid session cookie. Therefore you could

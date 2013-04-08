@@ -66,7 +66,7 @@ describe BBC::Redux do
     [:mpeg2,:mpeg4,:mp3,:flv,:h264_lo,:h264_hi,:dvbsubs].each do |url_method|
       it "should generate a #{url_method} url" do
         key_expectation
-        BBC::Redux::Url.should_receive(url_method).with('disk_reference', @fake_key).and_return('http://some/url')
+        BBC::Redux::Url.should_receive(url_method).with('disk_reference', @fake_key, nil).and_return('http://some/url')
         @instance.send("#{url_method}_url".to_sym, 'disk_reference').should == 'http://some/url'
       end
     end

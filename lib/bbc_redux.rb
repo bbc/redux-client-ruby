@@ -47,8 +47,10 @@ module BBC
     end
 
     [:mpeg2,:mpeg4,:mp3,:flv,:h264_lo,:h264_hi,:dvbsubs].each do |url_method|
-      define_method("#{url_method}_url".to_sym) do |disk_reference|
-        BBC::Redux::Url.send(url_method, disk_reference, key(disk_reference))
+      define_method("#{url_method}_url".to_sym) do |*args|
+        disk_reference = args[0]
+        filename       = args[1]
+        BBC::Redux::Url.send(url_method, disk_reference, key(disk_reference), filename)
       end
     end
 

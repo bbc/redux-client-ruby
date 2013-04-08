@@ -52,16 +52,20 @@ class BBC::Redux
     url_test :mpeg2 do
       expected = Url::WWW_HOST + "/programme/some-disk-reference/download/" + key.value + "/original/some-disk-reference_mpeg2.ts"
       Url.mpeg2("some-disk-reference", key).should == expected
+      Url.mpeg2("some-disk-reference", key, nil).should == expected
+      Url.mpeg2("some-disk-reference", key, 'foobar').should == expected.gsub('some-disk-reference_mpeg2', 'foobar')
     end
 
     url_test :mpeg4 do
       expected = Url::WWW_HOST + "/programme/some-disk-reference/download/" + key.value + "/2m-mp4/some-disk-reference_mpeg4.ts"
       Url.mpeg4("some-disk-reference", key).should == expected
+      Url.mpeg4("some-disk-reference", key, 'foobar').should == expected.gsub('some-disk-reference_mpeg4', 'foobar')
     end
 
     url_test :mp3 do
       expected = Url::WWW_HOST + "/programme/some-disk-reference/download/" + key.value + "/radio-mp3/some-disk-reference.mp3"
       Url.mp3("some-disk-reference", key).should == expected
+      Url.mp3("some-disk-reference", key, 'foobar').should == expected.gsub('some-disk-reference.mp3', 'foobar.mp3')
     end
 
     url_test :flv do
@@ -72,16 +76,19 @@ class BBC::Redux
     url_test :h264_lo do
       expected = Url::WWW_HOST + "/programme/some-disk-reference/download/" + key.value + "/some-disk-reference-lo.mp4"
       Url.h264_lo("some-disk-reference", key).should == expected
+      Url.h264_lo("some-disk-reference", key, 'foobar').should == expected.gsub('some-disk-reference-lo', 'foobar')
     end
 
     url_test :h264_hi do
       expected = Url::WWW_HOST + "/programme/some-disk-reference/download/" + key.value + "/some-disk-reference-hi.mp4"
       Url.h264_hi("some-disk-reference", key).should == expected
+      Url.h264_hi("some-disk-reference", key, 'foobar').should == expected.gsub('some-disk-reference-hi', 'foobar')
     end
 
     url_test :dvbsubs do
       expected = Url::WWW_HOST + "/programme/some-disk-reference/download/" + key.value + "/some-disk-reference-dvbsubs.xml"
       Url.dvbsubs("some-disk-reference", key).should == expected
+      Url.dvbsubs("some-disk-reference", key, 'foobar').should == expected.gsub('some-disk-reference-dvbsubs', 'foobar')
     end
 
     url_test :tv_schedule do
