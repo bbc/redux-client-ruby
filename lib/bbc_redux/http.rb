@@ -8,7 +8,7 @@ module BBC
       include BBC::Redux::Exceptions
 
       def get(url, opts = {})
-        Typhoeus::Request.get(url, opts)
+        Typhoeus::Request.get(url, opts.merge( :follow_location => true ) )
       end
 
       def head(url, opts = {})

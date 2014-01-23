@@ -5,7 +5,7 @@ module BBC
     module Url
 
       API_HOST = "http://api.bbcredux.com"
-      WWW_HOST = "http://g.bbcredux.com"
+      WWW_HOST = "https://g.bbcredux.com"
 
       def self.login(username, password)
         encode API_HOST + "/user/login?username=#{username}&password=#{password}"
