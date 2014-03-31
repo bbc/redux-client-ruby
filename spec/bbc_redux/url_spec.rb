@@ -22,7 +22,7 @@ class BBC::Redux
     end
 
     url_test :WWW_HOST do
-      Url::WWW_HOST.should == "http://g.bbcredux.com"
+      Url::WWW_HOST.should == "https://g.bbcredux.com"
     end
 
     url_test :login do

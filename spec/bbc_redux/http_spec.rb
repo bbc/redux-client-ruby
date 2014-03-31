@@ -13,7 +13,7 @@ class BBC::Redux
         fake_token = 'token'
         url = 'http://g.bbcredux.com'
         fake_response = Typhoeus::Response.new(:code => 400)
-        Typhoeus::Request.stub!(:head).with(url, {:headers => {:Cookie => "BBC_video=#{fake_token}"} } ).and_return(fake_response)
+        Typhoeus::Request.stub!(:head).with(url, {:headers => {:Cookie => "BBC_video=#{fake_token}; token=#{fake_token}"} } ).and_return(fake_response)
 
         lambda{ HttpClient.new.head_page(url, fake_token) }.should raise_exception(Exceptions::ClientHttpException)
       end

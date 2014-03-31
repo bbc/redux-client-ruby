@@ -68,7 +68,7 @@ module BBC
       end
 
       def cookie_request_header(token)
-        {:Cookie => "BBC_video=#{token}"}
+        {:Cookie => "BBC_video=#{token}; token=#{token}"}
       end
     end
   end
