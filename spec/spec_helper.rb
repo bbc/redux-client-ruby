@@ -1,17 +1,16 @@
-if RUBY_VERSION.match("1.9")
-  require "cover_me"
+require 'simplecov'
 
-  CoverMe.config.project.root = File.join(File.dirname(__FILE__), '..')
-  CoverMe.config.file_pattern = /redux/
+SimpleCov.start do
+  add_filter '/spec/'
 end
 
 require 'rspec'
 require 'bbc_redux'
 
-# Requires supporting files with custom matchers and macros, etc,
-# in ./support/ and its subdirectories.
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
-
 RSpec.configure do |config|
-  config.treat_symbols_as_metadata_keys_with_true_values = true
+  config.order = 'random'
+
+  config.mock_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
 end

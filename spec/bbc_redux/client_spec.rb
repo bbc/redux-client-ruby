@@ -30,31 +30,32 @@ describe BBC::Redux::Client do
         </user>
       </response>
       }
-      client.stub!(:get).and_return(fake_response(200, xml))
+
+      allow(client).to receive(:get) { fake_response(200, xml) }
       client.login("username", "password").username.should == "testuser"
     end
     it "should raise user not found exception with invalid user name" do
-      client.stub!(:get).and_return(fake_response(404))
-      lambda { client.login("username", "password") }.should raise_error BBC::Redux::Exceptions::UserNotFoundException
+      allow(client).to receive(:get) { fake_response(404) }
+      expect { client.login("username", "password") }.to raise_error BBC::Redux::Exceptions::UserNotFoundException
     end
     it "should raise user incorrect password exception with invalid password" do
-      client.stub!(:get).and_return(fake_response(403))
-      lambda { client.login("username", "password") }.should raise_error BBC::Redux::Exceptions::UserPasswordException
+      allow(client).to receive(:get) { fake_response(403) }
+      expect { client.login("username", "password") }.to raise_error BBC::Redux::Exceptions::UserPasswordException
     end
     it "should raise a client http exception with a bad response" do
-      client.stub!(:get).and_return(fake_response(500))
-      lambda { client.login("username", "password") }.should raise_error BBC::Redux::Exceptions::ClientHttpException
+      allow(client).to receive(:get) { fake_response(500) }
+      expect { client.login("username", "password") }.to raise_error BBC::Redux::Exceptions::ClientHttpException
     end
   end
 
   describe "#logout" do
     it "should parse an OK response correctly" do
-      client.stub!(:get).and_return(fake_response(200))
+      allow(client).to receive(:get) { fake_response(200) }
       client.logout(fake_session)
     end
     it "should not raise a client http exception with a bad response" do
-      client.stub!(:get).and_return(fake_response(500))
-      lambda { client.logout(fake_session) }.should_not raise_error BBC::Redux::Exceptions::ClientHttpException
+      allow(client).to receive(:get) { fake_response(500) }
+      expect { client.logout(fake_session) }.not_to raise_error
     end
   end
 
@@ -67,20 +68,20 @@ describe BBC::Redux::Client do
         </programme>
       </response>
       }
-      client.stub!(:get).and_return(fake_response(200, xml))
+      allow(client).to receive(:get) { fake_response(200, xml) }
       client.key("some-disk-reference", fake_session).value.should == "some-value"
     end
     it "should raise a content not found exception when given a non existent disk reference" do
-      client.stub!(:get).and_return(fake_response(404))
-      lambda { client.key("some-disk-reference", fake_session) }.should raise_error BBC::Redux::Exceptions::ContentNotFoundException
+      allow(client).to receive(:get) { fake_response(404) }
+      expect { client.key("some-disk-reference", fake_session) }.to raise_error BBC::Redux::Exceptions::ContentNotFoundException
     end
     it "should raise a session invalid exception when given an an invalid session object" do
-      client.stub!(:get).and_return(fake_response(403))
-      lambda { client.key("some-disk-reference", fake_session) }.should raise_error BBC::Redux::Exceptions::SessionInvalidException
+      allow(client).to receive(:get) { fake_response(403) }
+      expect { client.key("some-disk-reference", fake_session) }.to raise_error BBC::Redux::Exceptions::SessionInvalidException
     end
     it "should raise a client http exception with a bad response" do
-      client.stub!(:get).and_return(fake_response(500))
-      lambda { client.key("some-disk-reference", fake_session) }.should raise_error BBC::Redux::Exceptions::ClientHttpException
+      allow(client).to receive(:get) { fake_response(500) }
+      expect { client.key("some-disk-reference", fake_session) }.to raise_error BBC::Redux::Exceptions::ClientHttpException
     end
   end
 
@@ -103,28 +104,28 @@ describe BBC::Redux::Client do
         </programme>
       </response>
       }
-      client.stub!(:get).and_return(fake_response(200, xml))
+      allow(client).to receive(:get) { fake_response(200, xml) }
       client.content("some-disk-reference", fake_session).channel.should == "bbctwo"
     end
     it "should raise a content not found exception when given a non existent disk reference" do
-      client.stub!(:get).and_return(fake_response(404))
-      lambda { client.content("some-disk-reference", fake_session) }.should raise_error BBC::Redux::Exceptions::ContentNotFoundException
+      allow(client).to receive(:get) { fake_response(404) }
+      expect { client.content("some-disk-reference", fake_session) }.to raise_error BBC::Redux::Exceptions::ContentNotFoundException
     end
     it "should raise a session invalid exception when given an an invalid session object" do
-      client.stub!(:get).and_return(fake_response(403))
-      lambda { client.content("some-disk-reference", fake_session) }.should raise_error BBC::Redux::Exceptions::SessionInvalidException
+      allow(client).to receive(:get) { fake_response(403) }
+      expect { client.content("some-disk-reference", fake_session) }.to raise_error BBC::Redux::Exceptions::SessionInvalidException
     end
     it "should raise a client http exception with a bad response" do
-      client.stub!(:get).and_return(fake_response(500))
-      lambda { client.content("some-disk-reference", fake_session) }.should raise_error BBC::Redux::Exceptions::ClientHttpException
+      allow(client).to receive(:get) { fake_response(500) }
+      expect { client.content("some-disk-reference", fake_session) }.to raise_error BBC::Redux::Exceptions::ClientHttpException
     end
   end
 
   describe "tv_schedule" do
 
     it "should parse schedule OK" do
-       client.stub!(:get).and_return(fake_response(200, "foo"))
-       BBC::Redux::Schedule.should_receive(:from_tv_html).with("foo")
+       allow(client).to receive(:get).and_return(fake_response(200, "foo"))
+       expect(BBC::Redux::Schedule).to receive(:from_tv_html).with("foo")
        client.tv_schedule(Time.now, fake_session)
     end
 
@@ -158,21 +159,21 @@ describe BBC::Redux::Client do
         </body>
        </html>
        }
-       client.stub!(:get).and_return(fake_response(200, html))
-       lambda { client.tv_schedule(Time.now, fake_session) }.should raise_error BBC::Redux::Exceptions::SessionInvalidException
+       allow(client).to receive(:get).and_return(fake_response(200, html))
+       expect { client.tv_schedule(Time.now, fake_session) }.to raise_error BBC::Redux::Exceptions::SessionInvalidException
     end
 
 
     it "should raise a client http exception with a bad response" do
-      client.stub!(:get).and_return(fake_response(500))
-      lambda { client.tv_schedule(Time.now, fake_session) }.should raise_error BBC::Redux::Exceptions::ClientHttpException
+      allow(client).to receive(:get).and_return(fake_response(500))
+      expect { client.tv_schedule(Time.now, fake_session) }.to raise_error BBC::Redux::Exceptions::ClientHttpException
     end
   end
 
   describe "radio_schedule" do
     it "should parse schedule OK" do
-       client.stub!(:get).and_return(fake_response(200, "foo"))
-       BBC::Redux::Schedule.should_receive(:from_radio_html).with("foo")
+       allow(client).to receive(:get).and_return(fake_response(200, "foo"))
+       expect(BBC::Redux::Schedule).to receive(:from_radio_html).with("foo")
        client.radio_schedule(Time.now, fake_session)
     end
 
@@ -206,20 +207,19 @@ describe BBC::Redux::Client do
         </body>
        </html>
        }
-       client.stub!(:get).and_return(fake_response(200, html))
-       lambda { client.radio_schedule(Time.now, fake_session) }.should raise_error BBC::Redux::Exceptions::SessionInvalidException
+       allow(client).to receive(:get) { fake_response(200, html) }
+       expect { client.radio_schedule(Time.now, fake_session) }.to raise_error BBC::Redux::Exceptions::SessionInvalidException
     end
 
 
     it "should raise a client http exception with a bad response" do
-      client.stub!(:get).and_return(fake_response(500))
-      lambda { client.radio_schedule(Time.now, fake_session) }.should raise_error BBC::Redux::Exceptions::ClientHttpException
+      allow(client).to receive(:get) { fake_response(500) }
+      expect { client.radio_schedule(Time.now, fake_session) }.to raise_error BBC::Redux::Exceptions::ClientHttpException
     end
   end
 
   it '.ping' do
-    client.should_receive(:head_page)
-
+    allow(client).to receive(:head_page)
     client.ping(fake_session)
   end
 end
