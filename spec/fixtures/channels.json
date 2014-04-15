@@ -1,0 +1,51 @@
+[
+   {
+      "longname" : "BBC One",
+      "name" : "bbcone",
+      "category" : 1,
+      "sortorder" : 1010
+   },
+   {
+      "longname" : "BBC Two",
+      "name" : "bbctwo",
+      "category" : 1,
+      "sortorder" : 1020
+   },
+   {
+      "longname" : "BBC Three",
+      "name" : "bbcthree",
+      "category" : 1,
+      "sortorder" : 1030
+   },
+   {
+      "longname" : "BBC Four",
+      "name" : "bbcfour",
+      "category" : 1,
+      "sortorder" : 1040
+   },
+   {
+      "longname" : "Radio 1",
+      "name" : "bbcr1",
+      "category" : 2,
+      "sortorder" : 2010
+   },
+   {
+      "longname" : "Radio 1 Xtra",
+      "name" : "bbc1x",
+      "category" : 2,
+      "sortorder" : 2015
+   },
+   {
+      "longname" : "Radio 2",
+      "name" : "bbcr2",
+      "category" : 2,
+      "sortorder" : 2020
+   },
+   {
+      "longname" : "Radio 3",
+      "name" : "bbcr3",
+      "category" : 2,
+      "sortorder" : 2030
+   }
+]
+

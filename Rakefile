@@ -5,16 +5,13 @@ task :default => :spec
 
 require 'rspec/core/rake_task'
 
-integration_tests = FileList['spec/integration/*_spec.rb']
-unit_tests        = FileList['spec/**/*_spec.rb'] - integration_tests
-
 RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = unit_tests
+  spec.pattern = FileList['spec/bbc/**/*_spec.rb']
 end
 
 desc 'Run integration tests (requires redux login)'
 RSpec::Core::RakeTask.new(:integration) do |spec|
-  spec.pattern = integration_tests
+  spec.pattern = FileList['spec/integration/**/*_spec.rb']
 end
 
 desc 'Open coverage report'
@@ -28,8 +25,9 @@ end
 require 'yard'
 
 YARD::Rake::YardocTask.new(:doc) do |t|
-  t.files   = [ 'lib/**/*.rb' ]
+  t.files   = [ 'lib/bbc/**/*.rb' ]
   t.options = [
+    '--no-private',
     '--output-dir', 'docs/yard',
     '--readme', 'README.md'
   ]

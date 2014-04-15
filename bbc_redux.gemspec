@@ -45,14 +45,17 @@ Gem::Specification.new do |gem|
 
   # Development dependencies
 
-  gem.add_development_dependency 'rspec', '>= 2.14.1'
+  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'rspec-its'
   gem.add_development_dependency 'simplecov', '>= 0.8.2'
   gem.add_development_dependency 'yard'
 
   # Runtime dependencies
 
   gem.add_dependency 'nokogiri'
+  gem.add_dependency 'representable'
   gem.add_dependency 'typhoeus', '>= 0.6.8'
+  gem.add_dependency 'virtus', '>= 0.5.0'
 
 end
 

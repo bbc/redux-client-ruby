@@ -1,0 +1,28 @@
+[
+   {
+      "priority" : 1000,
+      "id" : 1,
+      "description" : "BBC TV"
+   },
+   {
+      "priority" : 2000,
+      "id" : 2,
+      "description" : "BBC Radio"
+   },
+   {
+      "priority" : 3000,
+      "id" : 3,
+      "description" : "BBC HD"
+   },
+   {
+      "priority" : 4000,
+      "id" : 4,
+      "description" : "BBC Olympics"
+   },
+   {
+      "priority" : 5000,
+      "id" : 5,
+      "description" : "BBC Olympics HD"
+   }
+]
+
