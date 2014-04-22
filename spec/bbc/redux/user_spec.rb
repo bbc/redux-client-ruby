@@ -13,8 +13,6 @@ describe BBC::Redux::User do
   {
 
     # attribute_name    => expected_value
-    :admin              => false,
-    :admin?             => false,
     :can_invite         => false,
     :can_invite?        => false,
     :created            => DateTime.parse('2008-01-01 01:01:01 +0000'),

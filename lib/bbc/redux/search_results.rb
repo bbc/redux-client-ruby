@@ -17,19 +17,22 @@ module BBC
     #   results.total          #=> Integer
     #   results.total_returned #=> Integer
     #   results.has_more?      #=> Boolean
-    #   results.next_query     #=> Hash
     #
-    # @example Iterating search results
+    # @example Iterating all search results
     #
-    #   results = redux_client.search(:name => 'Pingu')
+    #   results = redux_client.search(:name => 'Pingu', :offset => 0)
     #
     #   while true do
-    #     results.each do |asset|
+    #     results.assets.each do |asset|
     #       puts asset.name
     #     end
     #
     #     if results.has_more?
-    #       results = redux_client.search(results.next_query)
+    #       next_query = results.query.merge({
+    #         :offset => results.query[:offset] + 10
+    #       })
+    #
+    #       results = redux_client.search(next_query)
     #     else
     #       break
     #     end
@@ -67,23 +70,10 @@ module BBC
       # @return [Integer] total number of results returned in this query
       attribute :total_returned, Integer
 
-      # @see SearchResults#next_query
       # @return [Boolean] true if there are more results available than
       #   returned in this query
       def has_more?
         (offset + total_returned) < total
-      end
-
-      # @see SearchResults#has_more?
-      # @return [Hash,nil] a hash containing the query parameters for the next
-      #   set of results if SearchResults#has_more? is true. Nil otherwise
-      def next_query
-        if has_more?
-          query  = self.query || { }
-          limit  = query[:limit] || 10
-          offset = (query[:offset] || 0) + limit
-          query.merge :limit => limit, :offset => offset
-        end
       end
 
     end

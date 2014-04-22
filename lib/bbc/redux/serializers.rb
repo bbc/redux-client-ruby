@@ -59,6 +59,7 @@ module BBC
         include Representable::JSON
         property :created_at, :as => :time
         property :offset
+        property :query
         property :query_time, :as => :elapsed
         property :total,      :as => :total_found
         property :total_returned
@@ -71,28 +72,24 @@ module BBC
       class User < Representable::Decorator
         include Representable::JSON
 
-        property :admin
+        property :can_invite
+        property :created
+        property :id
+        property :uuid
 
-        nested :user do
-          property :can_invite
-          property :created
-          property :id
-          property :uuid
+        collection :permitted_services
 
-          collection :permitted_services
+        nested :details do
+          property :department
+          property :division
+          property :email
+          property :name
+          property :username
+        end
 
-          nested :details do
-            property :department
-            property :division
-            property :email
-            property :name
-            property :username
-          end
-
-          nested :legal do
-            property :legal_accepted, :as => :accepted
-            property :legal_html
-          end
+        nested :legal do
+          property :legal_accepted, :as => :accepted
+          property :legal_html
         end
 
       end

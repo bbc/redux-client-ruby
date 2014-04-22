@@ -1,27 +1,22 @@
 {
-  "admin": false,
-  "success": true,
-  "user": {
-    "created": "2008-01-01 01:01:01 +0000",
-    "can_invite": false,
-    "permitted_services": [
-      "uk.bbc.radio",
-      "uk.bbc.tv"
-    ],
-    "legal": {
-      "legal_html": "<h1>Action Required</h1>",
-      "accepted": 0
-    },
-    "id": 1234,
-    "details": {
-      "email":      "mail@example.com",
-      "department": "My Department",
-      "division":   "My Division",
-      "name":       "Jane Smith",
-      "username":   "jsmith"
-    },
-    "uuid": "eac522fe-313a-453e-97b0-d33e6fd50c62"
+  "created": "2008-01-01 01:01:01 +0000",
+  "can_invite": false,
+  "permitted_services": [
+    "uk.bbc.radio",
+    "uk.bbc.tv"
+  ],
+  "legal": {
+    "legal_html": "<h1>Action Required</h1>",
+    "accepted": 0
   },
-  "token": "1234567-TS6TFieifxYrBPeEWrZsACOFDpOiZZQa"
+  "id": 1234,
+  "details": {
+    "email":      "mail@example.com",
+    "department": "My Department",
+    "division":   "My Division",
+    "name":       "Jane Smith",
+    "username":   "jsmith"
+  },
+  "uuid": "eac522fe-313a-453e-97b0-d33e6fd50c62"
 }
 

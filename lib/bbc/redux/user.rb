@@ -9,7 +9,6 @@ module BBC
     #
     #   user = redux_client.user
     #
-    #   user.admin?       #=> Boolean
     #   user.can_invite?  #=> Boolean
     #   user.created      #=> DateTime
     #   user.email        #=> String
@@ -30,12 +29,6 @@ module BBC
     class User
 
       include Virtus.value_object
-
-      # @!attribute [r] admin
-      # @return [Boolean] whether the user is an admin
-      attribute :admin, Boolean
-
-      alias :admin? :admin
 
       # @!attribute [r] can_invite
       # @return [Boolean] whether the user has ability to invite others to Redux

@@ -66,29 +66,4 @@ describe BBC::Redux::SearchResults do
     end
   end
 
-  describe '#next_query' do
-    it 'should be false when offset + total_returned >= total' do
-      results = described_class.new({
-        :offset => 20, :total_returned => 10, :total => 30
-      })
-
-      expect(results.next_query).to be(nil)
-    end
-
-    it 'is otherwise the curent query with offset raised by limit' do
-
-      results = described_class.new({
-        :query          => { :limit => 10, :offset => 20, :untouched => :foo },
-        :offset         => 20,
-        :total          => 40,
-        :total_returned => 10,
-      })
-
-      expect(results.next_query[:limit]).to  eq(10)
-      expect(results.next_query[:offset]).to eq(30)
-      expect(results.next_query[:untouched]).to eq(:foo)
-
-    end
-  end
-
 end
