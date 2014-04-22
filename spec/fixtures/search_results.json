@@ -1,0 +1,172 @@
+{
+   "total_returned" : 10,
+   "total_found" : 25435,
+   "time" : "2014-04-15 17:35:42 +0100",
+   "elapsed" : "0.166",
+   "results" : {
+      "assets" : [
+         {
+            "name" : "Bargain Hunt",
+            "channel" : {
+               "name" : "bbcone",
+               "display_name" : "BBC One"
+            },
+            "uuid" : "87ba761a-2fb7-4437-a7bd-f358269e537c",
+            "description" : "Edinburgh: Bargain Hunt visits Scotland's capital",
+            "tags" : [],
+            "key" : "1-1397666142-936014a77cbe46ada46c2e114676a86b",
+            "timing" : {
+               "duration" : 2700,
+               "start" : "2014-04-15 12:15:00 +0100"
+            },
+            "reference" : 6002476641954360370
+         },
+         {
+            "name" : "Bargain Hunt",
+            "channel" : {
+               "name" : "bbcone",
+               "display_name" : "BBC One"
+            },
+            "uuid" : "0d3846b5-4e65-48af-8fd3-9cad2fe7ff1b",
+            "description" : "Edinburgh: Bargain Hunt visits Scotland's capital, where two teams compete to see who can make the most money at auction. Their experts are Charles Hanson and David Barby. [AD,S]",
+            "tags" : [],
+            "key" : "1-1397666142-936014a77cbe46ada46c2e114676a86b",
+            "timing" : {
+               "duration" : 2700,
+               "start" : "2014-04-15 12:15:00 +0100"
+            },
+            "reference" : 6002476641954360370
+         },
+         {
+            "name" : "Saints and Scroungers",
+            "channel" : {
+               "name" : "bbcone",
+               "display_name" : "BBC One"
+            },
+            "uuid" : "56e11e2e-e20f-4317-bd22-e74274f4bd69",
+            "description" : "2/20. The case of an apparently jobless single mother who may be better off than she lets on. Also in HD. [S]",
+            "tags" : [],
+            "key" : "1-1397666142-66d9c463c8e9540cd5ef3adf9685bee8",
+            "timing" : {
+               "duration" : 1800,
+               "start" : "2014-04-15 11:45:00 +0100"
+            },
+            "reference" : 6002468911013227569
+         },
+         {
+            "name" : "Saints and Scroungers",
+            "channel" : {
+               "name" : "bbcone",
+               "display_name" : "BBC One"
+            },
+            "uuid" : "82708c0e-3291-42e2-af24-05be0da52ef4",
+            "description" : "2/20. The case of an apparently jobless single mother who may be better off than she lets on. Also in HD. [S]",
+            "tags" : [],
+            "key" : "1-1397666142-66d9c463c8e9540cd5ef3adf9685bee8",
+            "timing" : {
+               "duration" : 1800,
+               "start" : "2014-04-15 11:45:00 +0100"
+            },
+            "reference" : 6002468911013227569
+         },
+         {
+            "name" : "Don't Get Done, Get Dom",
+            "channel" : {
+               "name" : "bbcone",
+               "display_name" : "BBC One"
+            },
+            "uuid" : "b6bd69a5-bce9-4d47-b84a-0f6aec376465",
+            "description" : "12/20. Second-Hand Cars: Dom helps two people who have had problems with the same used car firm. Also in HD. [AD,S]",
+            "tags" : [],
+            "key" : "1-1397666142-a0db7b01836077cac16d36b79f237e33",
+            "timing" : {
+               "duration" : 2700,
+               "start" : "2014-04-15 11:00:00 +0100"
+            },
+            "reference" : 6002457314601528368
+         },
+         {
+            "name" : "Homes Under the Hammer",
+            "channel" : {
+               "name" : "bbcone",
+               "display_name" : "BBC One"
+            },
+            "uuid" : "208c76d5-9746-4b55-9df7-f1095f6f1550",
+            "description" : "Martin Roberts and Lucy Alexander visit a renovation project in Maidstone, a one-bedroom flat in Salford and a house in Stoke with an outside toilet. [S]",
+            "tags" : [],
+            "key" : "1-1397666142-70ea4d07c926321bffb402537d15487a",
+            "timing" : {
+               "duration" : 3600,
+               "start" : "2014-04-15 10:00:00 +0100"
+            },
+            "reference" : 6002441852719262767
+         },
+         {
+            "name" : "Homes Under the Hammer",
+            "channel" : {
+               "name" : "bbcone",
+               "display_name" : "BBC One"
+            },
+            "uuid" : "b49c3134-0503-4cb9-a34b-30b897b85b75",
+            "description" : "Martin Roberts and Lucy Alexander visit a renovation project in Maidstone, a one-bedroom flat in Salford and a house in Stoke with an outside toilet. [S]",
+            "tags" : [],
+            "key" : "1-1397666142-70ea4d07c926321bffb402537d15487a",
+            "timing" : {
+               "duration" : 3600,
+               "start" : "2014-04-15 10:00:00 +0100"
+            },
+            "reference" : 6002441852719262767
+         },
+         {
+            "name" : "Helicopter Heroes: New Cases",
+            "channel" : {
+               "name" : "bbcone",
+               "display_name" : "BBC One"
+            },
+            "uuid" : "9bc480dd-1aa5-4691-9232-eb15e5c591db",
+            "description" : "Series following the Yorkshire Air Ambulance. An eight-year-old boy is stabbed and the helimed team must save him. Meanwhile, a DIY enthusiast's dream home almost kills him. Also in HD. [AD,S]",
+            "tags" : [],
+            "key" : "1-1397666142-46f6ffef86e3739bfbff302fcd1ce666",
+            "timing" : {
+               "duration" : 2700,
+               "start" : "2014-04-15 09:15:00 +0100"
+            },
+            "reference" : 6002430256307566003
+         },
+         {
+            "name" : "Breakfast",
+            "channel" : {
+               "name" : "bbcone",
+               "display_name" : "BBC One"
+            },
+            "uuid" : "245bca49-1595-4d6d-bdb2-9b737018adc5",
+            "description" : "The latest news, sport, business and weather from the BBC's Breakfast team. Also in HD. [S] Including regional news at 25 and 55 minutes past each hour.",
+            "tags" : [],
+            "key" : "1-1397666142-d092e33e62085fc099c2b704c5f7ee11",
+            "timing" : {
+               "duration" : 11700,
+               "start" : "2014-04-15 06:00:00 +0100"
+            },
+            "reference" : 6002380005190200365
+         },
+         {
+            "name" : "Breakfast",
+            "channel" : {
+               "name" : "bbcone",
+               "display_name" : "BBC One"
+            },
+            "uuid" : "279e9823-c335-46bf-a39e-b015487886e2",
+            "description" : "The latest news, sport, business and weather from the BBC's Breakfast team. Also in HD. [S] Including regional news at 25 and 55 minutes past each hour.",
+            "tags" : [],
+            "key" : "1-1397666142-d092e33e62085fc099c2b704c5f7ee11",
+            "timing" : {
+               "duration" : 11700,
+               "start" : "2014-04-15 06:00:00 +0100"
+            },
+            "reference" : 6002380005190200365
+         }
+      ]
+   },
+   "offset" : "10"
+}
+

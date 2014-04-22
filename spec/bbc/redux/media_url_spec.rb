@@ -34,7 +34,11 @@ describe BBC::Redux::MediaUrl do
         match(/\/asset\/media\/abc\/#{url.key.value}\/dvbsubs\/abc.xml$/)
     end
 
-    it 'has correct value when we\'re an flv url'
+    it 'has correct value when we\'re an flv url' do
+      url = generate_url :type => :flv, :identifier => 'abc'
+      expect(url.end_point).to \
+        match(/\/asset\/media\/abc\/#{url.key.value}\/Flash_v1.0\/abc.flv$/)
+    end
 
     it 'has correct value when we\'re an h264_hi url' do
       url = generate_url :type => :h264_hi, :identifier => 'abc'

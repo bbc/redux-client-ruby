@@ -3,7 +3,7 @@
 $: << File.join( File.dirname(__FILE__), 'lib' )
 
 require 'rake'
-require 'bbc_redux/version'
+require 'bbc/redux/version'
 
 Gem::Specification.new do |gem|
 

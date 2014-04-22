@@ -15,6 +15,15 @@ module BBC
         HOST + "/asset/media/#{id}/#{key}/dvbsubs/#{(fname || '%s.xml') % id}"
       end
 
+      # Make FLV media file end point
+      # @param id    [String] asset identifier
+      # @param key   [String] string value of a valid access key
+      # @param fname [String] template for the file name
+      # @return [String] The end point
+      def self.flv(id, key, fname = nil)
+        HOST + "/asset/media/#{id}/#{key}/Flash_v1.0/#{(fname || '%s.flv') % id}"
+      end
+
       # Make mp3 media file end point
       # @param id    [String] asset identifier
       # @param key   [String] string value of a valid access key

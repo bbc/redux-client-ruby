@@ -55,6 +55,19 @@ module BBC
         items extend: ChannelCategory, class: BBC::Redux::ChannelCategory
       end
 
+      class SearchResults < Representable::Decorator
+        include Representable::JSON
+        property :created_at, :as => :time
+        property :offset
+        property :query_time, :as => :elapsed
+        property :total,      :as => :total_found
+        property :total_returned
+
+        nested :results do
+          collection :assets, :extend => Asset, :class => BBC::Redux::Asset
+        end
+      end
+
       class User < Representable::Decorator
         include Representable::JSON
 
