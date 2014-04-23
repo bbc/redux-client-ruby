@@ -22,7 +22,7 @@ module BBC
     #
     # @example generate a URL with a different filename
     #
-    #   url = redux_client.asset('5966413090093319525').url(:mp3)
+    #   url = redux_client.asset('5966413090093319525').mp3_url
     #
     #   url.end_point('myfile.mp3') #=> String
     #

@@ -5,6 +5,31 @@ require 'typhoeus'
 module BBC
   module Redux
 
+    # Redux API Client
+    #
+    # @example Initialize client with either username and password or token
+    #
+    #   client = BBC::Redux::Client.new({
+    #     :username => 'username',
+    #     :password => 'password',
+    #   })
+    #
+    #   client = BBC::Redux::Client.new :token => 'some-token'
+    #
+    # @example Using the client to retrieve data
+    #
+    #   client.asset('5966413090093319525') #=> BBC::Redux::Asset
+    #   client.channel_categories           #=> Array<BBC::Redux::ChannelCategory>
+    #   client.channels                     #=> Array<BBC::Redux::Channel>
+    #   client.schedule(Date.today)         #=> Array<BBC::Redux::Asset>
+    #   client.search(:name => 'Pingu')     #=> BBC::Redux::SearchResults
+    #   client.user                         #=> BBC::Redux::User
+    #
+    # @example Call logout once finished to destroy your session
+    #
+    #   client.logout
+    #
+    # @author Matt Haynes <matt.haynes@bbc.co.uk>
     class Client
 
       # Raised when backend HTTP API returns a 403, indicates you are either
