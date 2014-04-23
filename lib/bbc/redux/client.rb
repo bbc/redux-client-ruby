@@ -97,7 +97,6 @@ module BBC
         return nil
       end
 
-
       # Return all programmes for the schedule date, everything from 0600 for
       # 24 hours afterwards. May make multiple requests to backend to retreive
       # all the data
@@ -133,7 +132,7 @@ module BBC
           end
         end
 
-        assets.sort { |a,b| a.start - b.start }
+        assets.sort { |a,b| b.start - a.start }
       end
 
       # Perform a search of Redux Archive
