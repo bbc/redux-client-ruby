@@ -41,6 +41,9 @@ describe BBC::Redux do
     expect(asset.scrid.description).to eq('DTG series CRID')
     expect(asset.scrid.type).to eq('0x32')
 
+    # Special test for broken crid response
+    expect(client.asset('5203338276492306280').crids).to eq([])
+
     # Test media url
     resp = client.http.head(asset.flv_url)
     expect(resp.code).to eq(200)

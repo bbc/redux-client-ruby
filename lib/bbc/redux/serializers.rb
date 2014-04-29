@@ -29,11 +29,10 @@ module BBC
           property :display_name
         end
 
-        collection :crids, :class => BBC::Redux::Crid do
-          property :content
-          property :description
-          property :type
-        end
+        # NB, special compensation for api returning crids: nil not crids: []
+        collection :crids, :reader => lambda { |doc, args|
+          self.crids = (doc['crids'] || []).map {|c| BBC::Redux::Crid.new(c) }
+        }
       end
 
       class Channel < Representable::Decorator
