@@ -154,6 +154,28 @@ http://rubydoc.info/github/bbcsnippets/redux-client-ruby/version-4/frames
 
 ## Caveats / Known Issues
 
+### Number of HTTP requests
+
+All the methods on the `BBC::Redux::Client` object represent a HTTP request to
+the API, caching is left as an exercise to the reader.
+
+This means you should at the very least be careful with how you handle the
+returned objects. This code for example makes four HTTP requests:
+
+    client.asset('5966413090093319525').channel
+    client.asset('5966413090093319525').description
+    client.asset('5966413090093319525').name
+    client.asset('5966413090093319525').reference
+
+Where as this code makes only one:
+
+    asset = client.asset('5966413090093319525')
+    
+    asset.channel
+    asset.description
+    asset.name
+    asset.reference
+
 ### Using a proxy server
 
 The client uses [Typhoeus](https://github.com/dbalatero/typhoeus) which
