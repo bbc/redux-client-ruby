@@ -30,6 +30,17 @@ describe BBC::Redux do
     expect(asset.start).to eq(DateTime.parse('2014-01-08 06:50:00 +0000'))
     expect(asset.uuid).to eq('26a141fc-8511-4fef-aa2b-af1d1de5a75a')
 
+    # Test crids
+    expect(asset.pcrid.class).to eq(BBC::Redux::Crid)
+    expect(asset.pcrid.content).to eq('crid://fp.bbc.co.uk/4CBRMV')
+    expect(asset.pcrid.description).to eq('DTG programme CRID')
+    expect(asset.pcrid.type).to eq('0x31')
+
+    expect(asset.scrid.class).to eq(BBC::Redux::Crid)
+    expect(asset.scrid.content).to eq('crid://fp.bbc.co.uk/LYRJ9T')
+    expect(asset.scrid.description).to eq('DTG series CRID')
+    expect(asset.scrid.type).to eq('0x32')
+
     # Test media url
     resp = client.http.head(asset.flv_url)
     expect(resp.code).to eq(200)
