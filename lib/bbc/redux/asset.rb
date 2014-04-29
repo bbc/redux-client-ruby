@@ -1,5 +1,6 @@
 require 'virtus'
 require_relative 'channel'
+require_relative 'crid'
 require_relative 'key'
 require_relative 'media_url'
 
@@ -17,7 +18,9 @@ module BBC
     #   asset.duration    #=> Integer
     #   asset.key         #=> BBC::Redux::Key
     #   asset.name        #=> String
+    #   asset.pcrid       #=> BBC::Redux::Crid
     #   asset.reference   #=> String
+    #   asset.scrid       #=> BBC::Redux::Crid
     #   asset.start       #=> DateTime
     #   asset.uuid        #=> String
     #
@@ -71,13 +74,29 @@ module BBC
       alias :title :name
 
       # @!attribute [r] uuid
-      # @return [String] the user's uuid
+      # @return [String] the assets's uuid
       attribute :uuid, String
+
+      # @!attribute [r] crids
+      # @return [String] the assets's crids
+      attribute :crids, Array[BBC::Redux::Crid], :default => [ ]
 
       # @!attribute [r] key
       # @return [Key] the asset's access key object
       def key
         @key ||= Key.new(access_key)
+      end
+
+      # @!attribute [r] pcrid
+      # @return [Key] the asset's programme crid
+      def pcrid
+        @pcrid ||= crids.find { |c| c.description =~ /programme/ }
+      end
+
+      # @!attribute [r] scrid
+      # @return [Key] the asset's series crid
+      def scrid
+        @scrid ||= crids.find { |c| c.description =~ /series/ }
       end
 
       private

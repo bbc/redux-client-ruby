@@ -28,6 +28,12 @@ module BBC
           property :name
           property :display_name
         end
+
+        collection :crids, :class => BBC::Redux::Crid do
+          property :content
+          property :description
+          property :type
+        end
       end
 
       class Channel < Representable::Decorator

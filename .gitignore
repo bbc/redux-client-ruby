@@ -3,3 +3,4 @@ Gemfile.lock
 coverage
 .yardoc
 docs
+*.gem

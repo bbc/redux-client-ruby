@@ -1,24 +1,36 @@
 {
-   "name" : "Pingu",
-   "channel" : {
-      "name" : "cbeebies",
-      "display_name" : "CBeebies"
-   },
-   "uuid" : "26a141fc-8511-4fef-aa2b-af1d1de5a75a",
-   "description" : "Animated adventures of Pingu. [S]",
-   "tags" : [
-      { 
-         "text" : "penguin"
-      },
-      {
-         "text" : "not_stoat"
-      }
-   ],
-   "key" : "1-1397227462-ba632af7af1ad",
-   "timing" : {
-      "duration" : 300,
-      "start" : "2014-01-08 06:50:00 +0000"
-   },
-   "reference" : 5966413090093319525
+  "crids" : [
+    {
+    "content" : "crid://fp.bbc.co.uk/LYRJ9T",
+    "type" : "0x32",
+    "description" : "DTG series CRID"
+  },
+  {
+    "content" : "crid://fp.bbc.co.uk/4CBRMV",
+    "type" : "0x31",
+    "description" : "DTG programme CRID"
+  }
+  ],
+  "name" : "Pingu",
+  "channel" : {
+    "name" : "cbeebies",
+    "display_name" : "CBeebies"
+  },
+  "uuid" : "26a141fc-8511-4fef-aa2b-af1d1de5a75a",
+  "description" : "Animated adventures of Pingu. [S]",
+  "tags" : [
+    { 
+    "text" : "penguin"
+  },
+  {
+    "text" : "not_stoat"
+  }
+  ],
+  "key" : "1-1397227462-ba632af7af1ad",
+  "timing" : {
+    "duration" : 300,
+    "start" : "2014-01-08 06:50:00 +0000"
+  },
+  "reference" : 5966413090093319525
 }
 

@@ -92,7 +92,7 @@ describe BBC::Redux::Client do
 
     it 'takes json from the backend HTTP API and generates an asset object' do
       expect(http_client).to \
-        receive(:post).with('https://i.bbcredux.com/asset/details', {
+        receive(:post).with('https://i.bbcredux.com/asset/details/extended', {
           :body           => { :reference => reference, :token => token },
           :followlocation => true,
         }).and_return(resp)
@@ -104,7 +104,7 @@ describe BBC::Redux::Client do
 
     it 'works when given a UUID rather than a disk reference' do
       expect(http_client).to \
-        receive(:post).with('https://i.bbcredux.com/asset/details', {
+        receive(:post).with('https://i.bbcredux.com/asset/details/extended', {
           :body           => { :uuid => uuid, :token => token },
           :followlocation => true,
         }).and_return(resp)

@@ -240,7 +240,7 @@ module BBC
       def url_for(action)
         case action
         when :asset
-          host + '/asset/details'
+          host + '/asset/details/extended'
         when :channels
           host + '/asset/channel/available'
         when :channel_categories
