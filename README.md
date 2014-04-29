@@ -61,7 +61,9 @@ to message us.
     asset.duration    #=> Integer
     asset.key         #=> BBC::Redux::Key
     asset.name        #=> String
+    asset.pcrid       #=> BBC::Redux::Crid
     asset.reference   #=> String
+    asset.scrid       #=> BBC::Redux::Crid
     asset.start       #=> DateTime
     asset.uuid        #=> String
 
