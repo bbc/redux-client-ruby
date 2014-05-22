@@ -112,6 +112,9 @@ to message us.
 
     # Search 
 
+    # You can also search on these params, see docs for more details
+    # :q, :name, :channel, :before, :after, :date, :longer, :shorter,
+    # :programme_crid, :series_crid,
     results = client.search(:name => 'Pingu')
     
     results.created_at     #=> DateTime
