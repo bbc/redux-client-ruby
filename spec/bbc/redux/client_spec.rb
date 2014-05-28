@@ -72,9 +72,28 @@ describe BBC::Redux::Client do
     end
   end
 
+  context 'account is compromised' do
+
+    subject do
+      described_class.new({
+        :http => http_client, :username => 'foo', :password => 'bar'
+      })
+    end
+
+    it 'raises error' do
+
+      resp = double(:resp, :code => 200, :body => '{"compromised": true}')
+
+      expect(http_client).to receive(:post).and_return(resp)
+
+      expect { subject }.to \
+        raise_error(BBC::Redux::Client::AccountCompromisedException)
+    end
+  end
+
   context 'initialized with neither token or username / password' do
     it 'raises an error' do
-      expect { described_class.new }.to raise_error
+      expect { described_class.new }.to raise_error(ArgumentError)
     end
   end
 

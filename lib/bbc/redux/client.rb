@@ -32,6 +32,10 @@ module BBC
     # @author Matt Haynes <matt.haynes@bbc.co.uk>
     class Client
 
+      # Raised when you try to login and you account has been marked as
+      # compromised
+      class AccountCompromisedException < Exception; end
+
       # Raised when backend HTTP API returns a 403, indicates you are either
       # trying to access some content that is unavailable to you, or your token
       # and session has expired.
@@ -67,6 +71,13 @@ module BBC
       # @option options [Object] :http (Typhoeus) The http client, can be
       #   overidden but expects method .post to return an object looking like
       #   Typhoeus::Response (code, headers, body, etc)
+      #
+      # @raise [ArgumentError] if you provide neither :username / :password nor
+      #   :token keys
+      # @raise [AccountCompromisedException] if the account has been flagged as
+      #   compromised
+      # @raise [ForbiddenException] if your username or password are incorrect
+      # @raise [HttpException] if backend fails
       def initialize(options = {})
         @host  = options[:host] || 'https://i.bbcredux.com'
         @http  = options[:http] || Typhoeus
@@ -79,9 +90,14 @@ module BBC
               :username => username, :password => password
             })
 
+            if data['compromised']
+              raise AccountCompromisedException
+            end
+
             @token = data.fetch('token')
           else
-            raise 'Supply either :token or :username and :password options'
+            err = 'Supply either :token or :username and :password options'
+            raise ArgumentError.new(err)
           end
         end
       end
@@ -215,6 +231,17 @@ module BBC
       def user
         build :user, :using => data_for(:user)
       end
+
+      # @return [Boolean] true if other_clinet is a redux client with the same
+      #   token, host and http
+      def ==(other_client)
+        self.class == other_client.class && \
+        self.token == other_client.token && \
+        self.host  == other_client.host  && \
+        self.http  == other_client.http
+      end
+
+      alias :eql? :==
 
       private
 
