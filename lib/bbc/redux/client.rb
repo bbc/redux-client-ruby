@@ -107,10 +107,12 @@ module BBC
       # @see BBC::Redux::Asset
       # @return [BBC::Redux::Asset, nil] the asset
       def asset(identifier)
-        if identifier =~ /^\d{19}$/
-          params = { :reference => identifier }
-        else
+        rex = /\A[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\Z/
+
+        if identifier =~ rex
           params = { :uuid => identifier }
+        else
+          params = { :reference => identifier }
         end
 
         build :asset, :using => data_for(:asset, params)
