@@ -48,6 +48,9 @@ module BBC
       # Raised when backend HTTP API returns a body that does not parse as json
       class JsonParseException < Exception; end
 
+      # Raised when backend HTTP API returns a 404
+      class NotFoundException < Exception; end
+
       # @!attribute [r] http
       # @return [Object] http client, by default this is Typhoeus
       attr_reader :http
@@ -329,6 +332,8 @@ module BBC
           JSON.parse(resp.body)
         when 403
           raise ForbiddenException.new("403 response for #{url}")
+        when 404
+          raise NotFoundException.new("404 response for #{url}")
         when 400..599
           raise HttpException.new("#{resp.code} response for #{url}")
         else
