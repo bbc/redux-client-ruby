@@ -142,18 +142,25 @@ module BBC
 
       # Return all programmes for the schedule date, everything from 0600 for
       # 24 hours afterwards. May make multiple requests to backend to retreive
-      # all the data
+      # all the data.
       #
       # @param [Date,DateTime,Time] date query this schedule date
       # @param [String,Array<String>,Channel,Array<Channel>,nil] channel
       #   optionally limit schedule query to one or an array of channels
       # @return [Array<BBC::Redux::Asset>] the list of assets broadcast on date
       def schedule(date, channels = nil)
+
+        date    = DateTime.parse date.strftime('%Y-%m-%dT06:00:00Z00:00')
+
         query   = {
-          :date     => date,
-          :channels => channels,
-          :offset   => 0,
-          :limit    => 100,
+          :after      => date.strftime('%Y-%m-%dT%H:%M:%S'),
+          :before     => ( date + 1 ).strftime('%Y-%m-%dT05:59:59'),
+          :channel    => channels,
+          :offset     => 0,
+          :limit      => 100,
+          :sort_by    =>'time',
+          :sort_order => 'ascending',
+          :repeats    => true,
         }
 
         results = search(query)
@@ -175,7 +182,7 @@ module BBC
           end
         end
 
-        assets.sort { |a,b| b.start - a.start }
+        assets
       end
 
       # Perform a search of Redux Archive
@@ -188,9 +195,9 @@ module BBC
       #   multiple channels.
       # @option params [Integer] :limit number of results to return. Default 10
       # @option params [Integer] :offset offset of the start of results
-      # @option params [Date,DateTime,Time] :before only return braodcasts
+      # @option params [Date,DateTime,Time] :before only return broadcasts
       #   before date
-      # @option params [Date,DateTime,Time] :after only return braodcasts after
+      # @option params [Date,DateTime,Time] :after only return broadcasts after
       #   date
       # @option params [Date,DateTime,Time] :date everything from 0600 on given
       #   date for 24hrs
@@ -198,6 +205,9 @@ module BBC
       # @option params [Integer] :shorter constraint on the duration, in seconds
       # @option params [String] :programme_crid TV Anytime CRID
       # @option params [String] :series_crid TV Anytime CRID
+      # @option params [TrueClass,FalseClass] :repeats include repeats
+      # @option params [String] :sort_by 'time' or nil
+      # @option params [String] :sort_order 'ascending' or 'descending'
       # @see BBC::Redux::SearchResults
       # @return [BBC::Redux::SearchResults] search results
       def search(params = {})
@@ -207,6 +217,10 @@ module BBC
             val.strftime('%Y-%m-%dT%H:%M:%S')
           elsif val.class == Channel
             val.name
+          elsif val.class == TrueClass
+            '1'
+          elsif val.class == FalseClass
+            '0'
           else
             val.to_s
           end
@@ -269,7 +283,7 @@ module BBC
       def url_for(action)
         case action
         when :asset
-          host + '/asset/details/extended'
+          host + '/asset/details'
         when :channels
           host + '/asset/channel/available'
         when :channel_categories

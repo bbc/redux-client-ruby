@@ -19,6 +19,11 @@ task :coverage do
   sh 'open coverage/index.html'
 end
 
+desc 'Open IRB with library loaded'
+task :console do
+  sh 'irb -Ilib -r bbc/redux'
+end
+
 ################################################################################
 # Documentation Tasks
 

@@ -111,7 +111,7 @@ describe BBC::Redux::Client do
 
     it 'takes json from the backend HTTP API and generates an asset object' do
       expect(http_client).to \
-        receive(:post).with('https://i.bbcredux.com/asset/details/extended', {
+        receive(:post).with('https://i.bbcredux.com/asset/details', {
           :body           => { :reference => reference, :token => token },
           :followlocation => true,
         }).and_return(resp)
@@ -123,7 +123,7 @@ describe BBC::Redux::Client do
 
     it 'works when given a UUID rather than a disk reference' do
       expect(http_client).to \
-        receive(:post).with('https://i.bbcredux.com/asset/details/extended', {
+        receive(:post).with('https://i.bbcredux.com/asset/details', {
           :body           => { :uuid => uuid, :token => token },
           :followlocation => true,
         }).and_return(resp)
@@ -212,14 +212,22 @@ describe BBC::Redux::Client do
     it 'passes params to backend HTTP API and generates results object' do
       expect(http_client).to \
         receive(:post).with('https://i.bbcredux.com/asset/search', {
-          :body           => { :q => 'foo', :longer => '200', :token => token },
+          :body           => {
+            :q      => 'foo',
+            :longer => '200',
+            :token  => token,
+            :true   => '1',
+            :false  => '0',
+          },
           :followlocation => true,
         }).and_return(resp)
 
-      results = instance.search(:q => 'foo', :longer => 200)
+      query   = { :q => 'foo', :longer => 200, :true => true, :false => false }
+
+      results = instance.search( query )
 
       expect(results.class).to be(BBC::Redux::SearchResults)
-      expect(results.query).to eq(:q => 'foo', :longer => 200)
+      expect(results.query).to eq( query )
     end
 
     context 'channel object based parameters' do
