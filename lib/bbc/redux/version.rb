@@ -2,7 +2,7 @@ module BBC
   module Redux
 
     # Library version
-    VERSION = '0.4.5.pre'
+    VERSION = '0.4.6.pre'
 
   end
 end
