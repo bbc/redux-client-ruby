@@ -33,6 +33,8 @@ module BBC
       # @return [String] channel short name, e.g. 'bbcone'
       attribute :name, String
 
+      alias :to_s :name
+
       # @!attribute [r] sortorder
       # @return [Integer] channel's suggested sort order in list views
       attribute :sortorder, Integer

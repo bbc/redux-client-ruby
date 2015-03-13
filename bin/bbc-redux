@@ -1,0 +1,325 @@
+#!/usr/bin/env ruby
+
+# vim: set filetype=ruby:
+
+$LOAD_PATH << File.join( File.dirname(__FILE__), '..', 'lib' )
+
+require 'fileutils'
+require 'logger'
+require 'optparse'
+
+require 'bbc/redux'
+require 'terminal-table'
+
+################################################################################
+# OPTIONS PARSER
+
+def parse_options( input )
+
+  options = { :command => :assets }
+
+  parser = OptionParser.new do |opts|
+
+    opts.banner    = 'usage: ' + File.basename(__FILE__) + ' [options]'
+
+    opts.separator ''
+    opts.separator 'asset download options:'
+
+    opts.on( '-a', '--after DATE', 'Filter by after date' ) do |d|
+      options[:after] = DateTime.parse( d )
+    end
+
+    opts.on( '-b', '--before DATE', 'Filter by before date' ) do |d|
+      options[:before] = DateTime.parse( d )
+    end
+
+    opts.on( '-c', '--channels CHANNEL,...', 'Filter by channel name' ) do |c|
+      options[:channel] = c.split(',')
+    end
+
+    opts.on( '-i', '--id ID', 'Filter by asset id' ) do |i|
+      options[:id] = i
+    end
+
+    opts.on( '-m', '--metadata', 'Download json metadata' ) do |metadata|
+      options[:metadata] = metadata
+    end
+
+    opts.on( '-o', '--output-directory DIR', 'Save to directory' ) do |d|
+      options[:output_directory] = d
+    end
+
+    opts.on( '-p', '--profiles PROFILE,...', 'Fetch asset with profile' ) do |p|
+      options[:profiles] = p.split(',')
+    end
+
+    opts.on( '-q', '--query QUERY', 'Filter by query' ) do |q|
+      options[:q] = q
+    end
+
+    opts.on( '--[no]-repeats', 'Include / exclude repeats' ) do |repeats|
+      options[:repeats] = repeats
+    end
+
+    opts.separator ''
+    opts.separator 'channel info commands:'
+
+    opts.on( '--list-channels', 'List available channels' ) do
+      options[:command] = :list_channels
+    end
+
+    opts.on( '--list-categories', 'List available channel categories' ) do
+      options[:command] = :list_categories
+    end
+
+    opts.separator ''
+    opts.separator 'common options:'
+
+    opts.on_tail( '-h', '--help', 'Show this message' ) do
+      puts opts
+      puts DATA.read
+      exit
+    end
+
+    opts.on_tail( '-v', '--verbose', 'Enable verbose logging' ) do
+      options[:verbose] = true
+    end
+
+    opts.on_tail( '-V', '--version', 'Show version' ) do
+      puts BBC::Redux::VERSION
+      exit
+    end
+
+  end
+
+  parser.parse!( input )
+
+  return options
+
+rescue ArgumentError,
+  OptionParser::InvalidOption,
+  OptionParser::MissingArgument => e
+  $stderr.puts e.message
+  exit 1
+end
+
+################################################################################
+# APPLICATION
+
+class BBC::Redux::CLI
+
+  attr_reader :options
+
+  def initialize( options )
+    @options = options
+  end
+
+  def run
+
+    valid_commands = [ :assets, :list_channels, :list_categories ]
+
+    if valid_commands.include? options[:command]
+      self.send( options[:command] )
+    else
+      fail "Unrecognized command #{options[:command]}, see --help"
+    end
+
+    if options[:token].nil?
+      logger.debug 'Logging out of redux'
+      redux_client.logout
+    end
+
+  end
+
+  def logger
+    if @logger.nil?
+      @logger = Logger.new( $stderr )
+
+      if options[:verbose]
+        @logger.level = Logger::DEBUG
+      else
+        @logger.level = Logger::INFO
+      end
+    end
+
+    @logger
+  end
+
+  def redux_client
+    if @redux_client.nil?
+      if options[:token]
+        credentials = { :token => options[:token] }
+      elsif options[:username] && options[:password]
+        credentials = {
+          :username => options[:username],
+          :password => options[:password],
+        }
+      else
+        $stderr.puts 'You need to set either the REDUX_TOKEN or REDUX_USERNAME'
+        $stderr.puts 'and REDUX_PASSWORD environment variables'
+        fail
+      end
+
+      @redux_client = BBC::Redux::Client.new( credentials )
+    end
+
+    @redux_client
+  end
+
+  def fail( message = '' )
+    $stderr.puts message
+    exit 1
+  end
+
+  def print_table( headings, rows )
+    puts Terminal::Table.new :headings => headings, :rows => rows
+  end
+
+  def assets
+
+    disk_references   = [ ]
+    output_directory  = options[:output_directory] || '.'
+
+    FileUtils.mkdir_p output_directory
+
+    if options[:id]
+      disk_references << options[:id]
+    else
+
+      search_params = options.select do |key,_|
+       [ :after, :before, :channel, :q ].include? key
+      end
+
+      unless options[:repeats] == false
+        search_params[:repeats] = true
+      end
+
+      search_params = search_params.merge({
+        :offset     => 0,
+        :sort_by    =>'time',
+        :sort_order => 'ascending'
+      })
+
+      logger.info 'Searching for references'
+
+      results = redux_client.search( search_params )
+
+      while true do
+        results.assets.each { |a| disk_references << a.disk_reference }
+
+        if results.has_more?
+          next_query = results.query.merge({
+            :offset => results.query[:offset] + 10
+          })
+
+          logger.debug "Searching for references, offset #{next_query[:offset]}"
+
+          results = redux_client.search(next_query)
+        else
+          break
+        end
+      end
+    end
+
+    disk_references.each do |disk_reference|
+
+      logger.info 'Fetching data for asset ' + disk_reference
+
+      asset = redux_client.asset( disk_reference )
+
+      if options[:metadata]
+        logger.debug 'Saving metadata for asset ' + disk_reference
+
+        serializer = BBC::Redux::Serializers::Asset.new( asset )
+        file_path  = File.join( output_directory, disk_reference + '.json' )
+
+        File.open( file_path, 'w' ) { |f| f << serializer.to_json }
+      end
+
+      if options[:profiles]
+        options[:profiles].each do |profile|
+
+          logger.debug "Saving profile #{profile} for asset #{disk_reference}"
+
+          url       = asset.send( profile + '_url' ).end_point
+          fname     = File.basename( url )
+          file_path = File.join( output_directory, fname )
+
+          `wget --quiet -O "#{file_path}" "#{url}"`
+
+        end
+      end
+
+    end
+
+  end
+
+  def list_categories
+    logger.debug 'Listing categories'
+
+    headings = %w{ id description priority }
+
+    rows     = redux_client.channel_categories.map do |category|
+      [ category.id, category.description, category.priority ]
+    end
+
+    print_table headings, rows
+  end
+
+  def list_channels
+    logger.debug 'Listing channels'
+
+    headings = %w{ category_id longname name sortorder }
+
+    rows     = redux_client.channels.map do |channel|
+      [
+        channel.category_id,
+        channel.longname,
+        channel.name,
+        channel.sortorder
+      ]
+    end
+
+    print_table headings, rows
+  end
+
+end
+
+################################################################################
+# FIRE UP THE QUATTRO
+
+options = parse_options( ARGV )
+
+runner  = BBC::Redux::CLI.new( options.merge({
+  :token    => ENV['REDUX_TOKEN'],
+  :username => ENV['REDUX_USERNAME'],
+  :password => ENV['REDUX_PASSWORD'],
+}))
+
+runner.run
+
+################################################################################
+# EXTENDED USAGE INFO
+
+__END__
+
+examples:
+
+To use the client you must have set one of these environment variables:
+
+  REDUX_TOKEN                     # A valid session token
+  REDUX_USERNAME & REDUX_PASSWORD # Your credentials
+
+You may then us the client, some examples below:
+
+  # Listing channels
+  $: bbc-redux --list-channels
+
+  # Downloading json metadata for an asset
+  $: bbc-redux --metadata --id 6008591816398520492
+
+  # Downloading MP3 files for a week of The Archers
+  $: bbc-redux -p mp3 -q 'The Archers' -a 2014-W01 -b 2014-W02
+
+  # Downloading TS files for a day of BBC One
+  $: bbc-redux -p ts -c bbcone -a 2014-01-01 -b 2014-01-02

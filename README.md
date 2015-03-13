@@ -1,5 +1,3 @@
-# THIS IS PRE RELEASE, DON'T USE IT AS IT PROBABLY WON'T WORK!
-
 # Redux
 
 A gem to help navigate the Redux API's and to screen scrape where an API does

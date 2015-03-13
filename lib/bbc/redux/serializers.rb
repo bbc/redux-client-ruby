@@ -42,6 +42,11 @@ module BBC
 
       end
 
+      class Assets < Representable::Decorator
+        include Representable::JSON::Collection
+        items extend: Asset, class: BBC::Redux::Asset
+      end
+
       class Channel < Representable::Decorator
         include Representable::JSON
         property :category_id, :as => :category

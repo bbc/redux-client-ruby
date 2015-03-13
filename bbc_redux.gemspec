@@ -29,6 +29,8 @@ Gem::Specification.new do |gem|
 
   # Files / paths
 
+  gem.executables << 'bbc-redux'
+
   gem.files       = FileList[
     'AUTHORS',
     'COPYING',
@@ -36,6 +38,7 @@ Gem::Specification.new do |gem|
     'README.md',
     'Rakefile',
     'bbc_redux.gemspec',
+    'bin/*'
     'lib/**/*'
   ]
 
@@ -54,6 +57,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'nokogiri'
   gem.add_dependency 'representable'
+  gem.add_dependency 'terminal-table'
   gem.add_dependency 'typhoeus', '>= 0.6.8'
   gem.add_dependency 'virtus', '>= 0.5.0'
 
