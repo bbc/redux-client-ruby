@@ -77,7 +77,11 @@ def parse_options( input )
 
     opts.on_tail( '-h', '--help', 'Show this message' ) do
       puts opts
-      puts DATA.read
+
+      file = File.expand_path($0)
+      data = File.read(file).split(/^__END__$/)[1]
+      puts data
+
       exit
     end
 
@@ -302,7 +306,6 @@ runner.run
 # EXTENDED USAGE INFO
 
 __END__
-
 examples:
 
 To use the client you must have set one of these environment variables:
