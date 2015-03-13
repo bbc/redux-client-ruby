@@ -38,7 +38,7 @@ Gem::Specification.new do |gem|
     'README.md',
     'Rakefile',
     'bbc_redux.gemspec',
-    'bin/*'
+    'bin/*',
     'lib/**/*'
   ]
 
