@@ -78,9 +78,27 @@ def parse_options( input )
     opts.on_tail( '-h', '--help', 'Show this message' ) do
       puts opts
 
-      file = File.expand_path($0)
-      data = File.read(file).split(/^__END__$/)[1]
-      puts data
+      puts ""
+      puts "examples:"
+      puts ""
+      puts "You MUST set either of these environment variables:"
+      puts ""
+      puts "  REDUX_TOKEN                     # A valid session token"
+      puts "  REDUX_USERNAME & REDUX_PASSWORD # Your credentials"
+      puts ""
+      puts "You may then us the client, some examples below:"
+      puts ""
+      puts "  # Listing channels"
+      puts "  $: bbc-redux --list-channels"
+      puts ""
+      puts "  # Downloading json metadata for an asset"
+      puts "  $: bbc-redux --metadata --id 6008591816398520492"
+      puts ""
+      puts "  # Downloading MP3 files for a week of The Archers"
+      puts "  $: bbc-redux -p mp3 -q 'The Archers' -a 2014-W01 -b 2014-W02"
+      puts ""
+      puts "  # Downloading TS files for a day of BBC One"
+      puts "  $: bbc-redux -p ts -c bbcone -a 2014-01-01 -b 2014-01-02"
 
       exit
     end
@@ -301,28 +319,3 @@ runner  = BBC::Redux::CLI.new( options.merge({
 }))
 
 runner.run
-
-################################################################################
-# EXTENDED USAGE INFO
-
-__END__
-examples:
-
-To use the client you must have set one of these environment variables:
-
-  REDUX_TOKEN                     # A valid session token
-  REDUX_USERNAME & REDUX_PASSWORD # Your credentials
-
-You may then us the client, some examples below:
-
-  # Listing channels
-  $: bbc-redux --list-channels
-
-  # Downloading json metadata for an asset
-  $: bbc-redux --metadata --id 6008591816398520492
-
-  # Downloading MP3 files for a week of The Archers
-  $: bbc-redux -p mp3 -q 'The Archers' -a 2014-W01 -b 2014-W02
-
-  # Downloading TS files for a day of BBC One
-  $: bbc-redux -p ts -c bbcone -a 2014-01-01 -b 2014-01-02
