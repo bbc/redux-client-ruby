@@ -182,7 +182,7 @@ Where as this code makes only one:
 The client uses [Typhoeus](https://github.com/dbalatero/typhoeus) which
 respects the `http_proxy` environment variable
 
-### "Your account has been comprimised"
+### "Your account has been compromised"
 
 You might get your account locked if you repeatedly login, especially from
 multiple IP's. To be on the safe side you should reuse the `token` assigned to
