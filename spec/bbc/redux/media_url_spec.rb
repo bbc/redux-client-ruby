@@ -4,12 +4,12 @@ describe BBC::Redux::MediaUrl do
 
   BBC::Redux::MediaUrl::TEMPLATES.each do |type|
     it "should initialize correctly when given a the #{type} type" do
-      expect { generate_url :type => type }.to_not raise_error
+      expect { generate_url :type => type }.to_not raise_error(Exception)
     end
   end
 
   it 'should not initialize when given an invalid transcode type' do
-    expect { generate_url :type => :foobar }.to raise_error
+    expect { generate_url :type => :foobar }.to raise_error(Exception)
   end
 
   describe '#end_point' do

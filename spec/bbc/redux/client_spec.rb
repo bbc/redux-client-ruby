@@ -32,7 +32,7 @@ describe BBC::Redux::Client do
 
     it 'should raise a generic exception with an unknown http status' do
       expect(http_client).to receive(:post).and_return(unknown_response)
-      expect { subject }.to raise_exception
+      expect { subject }.to raise_exception(Exception)
     end
 
     it 'should raise a json parse error when backend returns junk' do

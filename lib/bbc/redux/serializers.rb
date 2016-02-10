@@ -30,15 +30,12 @@ module BBC
         end
 
         # NB, special compensation for api returning crids: nil not crids: []
-        crid_reader = lambda { |doc, args|
-          self.crids = (doc['crids'] || []).map {|c| BBC::Redux::Crid.new(c) }
+        crid_reader = lambda { |options|
+          crids = options[:doc]['crids'] || []
+          self.crids = crids.map {|c| BBC::Redux::Crid.new(c) }
         }
 
-        collection :crids, :reader => crid_reader do
-          property :content
-          property :description
-          property :type
-        end
+       collection :crids, :reader => crid_reader
 
       end
 

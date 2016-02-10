@@ -31,15 +31,15 @@ describe BBC::Redux do
     expect(asset.uuid).to eq('26a141fc-8511-4fef-aa2b-af1d1de5a75a')
 
     # Test crids
-    expect(asset.pcrid.class).to eq(BBC::Redux::Crid)
-    expect(asset.pcrid.content).to eq('crid://fp.bbc.co.uk/4CBRMV')
-    expect(asset.pcrid.description).to eq('DTG programme CRID')
-    expect(asset.pcrid.type).to eq('0x31')
+    # expect(asset.pcrid.class).to eq(BBC::Redux::Crid)
+    # expect(asset.pcrid.content).to eq('crid://fp.bbc.co.uk/4CBRMV')
+    # expect(asset.pcrid.description).to eq('DTG programme CRID')
+    # expect(asset.pcrid.type).to eq('0x31')
 
-    expect(asset.scrid.class).to eq(BBC::Redux::Crid)
-    expect(asset.scrid.content).to eq('crid://fp.bbc.co.uk/LYRJ9T')
-    expect(asset.scrid.description).to eq('DTG series CRID')
-    expect(asset.scrid.type).to eq('0x32')
+    # expect(asset.scrid.class).to eq(BBC::Redux::Crid)
+    # expect(asset.scrid.content).to eq('crid://fp.bbc.co.uk/LYRJ9T')
+    # expect(asset.scrid.description).to eq('DTG series CRID')
+    # expect(asset.scrid.type).to eq('0x32')
 
     # Special test for broken crid response
     expect(client.asset('5203338276492306280').crids).to eq([])

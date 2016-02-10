@@ -48,6 +48,7 @@ Gem::Specification.new do |gem|
 
   # Development dependencies
 
+  gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'rspec-its'
   gem.add_development_dependency 'simplecov', '>= 0.8.2'
@@ -55,8 +56,9 @@ Gem::Specification.new do |gem|
 
   # Runtime dependencies
 
+  gem.add_dependency 'multi_json'
   gem.add_dependency 'nokogiri'
-  gem.add_dependency 'representable'
+  gem.add_dependency 'representable', '>= 2.4'
   gem.add_dependency 'terminal-table'
   gem.add_dependency 'typhoeus', '>= 0.6.8'
   gem.add_dependency 'virtus', '>= 0.5.0'
