@@ -41,10 +41,6 @@ describe BBC::Redux::Asset do
     its(attribute) { should eq(value) }
   end
 
-  it 'should works' do
-    p subject.to_json
-  end
-
   BBC::Redux::MediaUrl::TEMPLATES.each do |type|
     describe "##{type}_url" do
       it 'returns url of the correct type using the asset reference and key' do
