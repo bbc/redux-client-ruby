@@ -34,22 +34,22 @@ module BBC
 
       # Raised when you try to login and you account has been marked as
       # compromised
-      class AccountCompromisedException < Exception; end
+      class AccountCompromisedException < StandardError; end
 
       # Raised when backend HTTP API returns a 403, indicates you are either
       # trying to access some content that is unavailable to you, or your token
       # and session has expired.
-      class ForbiddenException < Exception; end
+      class ForbiddenException < StandardError; end
 
       # Raised when backend HTTP API returns a 4XX or 5XX status other than
       # 403, indicates an error within the HTTP API or bug in this library
-      class HttpException < Exception; end
+      class HttpException < StandardError; end
 
       # Raised when backend HTTP API returns a body that does not parse as json
-      class JsonParseException < Exception; end
+      class JsonParseException < StandardError; end
 
       # Raised when backend HTTP API returns a 404
-      class NotFoundException < Exception; end
+      class NotFoundException < StandardError; end
 
       # @!attribute [r] http
       # @return [Object] http client, by default this is Typhoeus
