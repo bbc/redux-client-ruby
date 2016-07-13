@@ -1,6 +1,8 @@
+*.gem
+.bundle
 .rake_t_cache
+.yardoc
 Gemfile.lock
 coverage
-.yardoc
 docs
-*.gem
+vendor
