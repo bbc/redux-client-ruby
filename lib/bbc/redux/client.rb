@@ -323,7 +323,7 @@ module BBC
         params = params.select { |_,v| v.class != Array }
 
         resp = http.post(url, {
-          :body           => params.merge(:token => token),
+          :body           => params.merge(:token => token).delete_if {|k,v| v.nil?},
           :followlocation => true,
         })
 
