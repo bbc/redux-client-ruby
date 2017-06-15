@@ -2,7 +2,6 @@
 
 $: << File.join( File.dirname(__FILE__), 'lib' )
 
-require 'rake'
 require 'bbc/redux/version'
 
 Gem::Specification.new do |gem|
@@ -31,18 +30,18 @@ Gem::Specification.new do |gem|
 
   gem.executables << 'bbc-redux'
 
-  gem.files       = FileList[
+  gem.files       = [
     'AUTHORS',
     'COPYING',
     'Gemfile',
     'README.md',
     'Rakefile',
     'bbc_redux.gemspec',
-    'bin/*',
-    'lib/**/*'
-  ]
+    Dir.glob('bin/*').to_a,
+    Dir.glob('lib/**/*').to_a
+  ].flatten
 
-  gem.test_files    = FileList[ 'spec/**/*' ]
+  gem.test_files    = Dir.glob('spec/**/*').to_a
 
   gem.require_paths = [ 'lib' ]
 

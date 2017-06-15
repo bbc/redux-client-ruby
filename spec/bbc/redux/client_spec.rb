@@ -56,7 +56,6 @@ describe BBC::Redux::Client do
         :body           => {
           :username => 'foo',
           :password => 'bar',
-          :token    => nil,
         },
         :followlocation => true
       }).and_return(resp)

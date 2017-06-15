@@ -3,7 +3,7 @@ module BBC
 
     # Library version
 
-    VERSION = '0.4.12'
+    VERSION = '0.4.13'
 
   end
 end
